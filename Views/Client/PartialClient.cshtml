@@ -1,0 +1,48 @@
+﻿@model ReliableCabs.Models.ClientModel
+
+
+
+
+      <div class="col-sm-10">
+	    <div class="white-box">
+ <table class="display" id="MyDataTable">
+     <thead>
+         <tr>
+         <th>ClientId</th>
+          <th>FirstName</th>
+          <th>LastName</th>  
+          <th>DriverLicenceNo</th>
+           <th>Mobile</th>
+           <th>Email</th>       
+           <th>PhysicalAddress</th> 
+      </tr>
+    </thead>
+     <tbody>
+          @foreach (var item in Model.ListClients)
+{
+           
+     <tr>
+               <td>@item.ClientId</td>
+               <td>@item.FirstName</td>
+               <td>@item.LastName</td>
+               <td>@item.DriverLicenceNo</td>
+               <td>@item.Mobile</td>
+               <td>@item.Email</td>
+              <td>@item.PhysicalAddress</td>
+       
+         </tr>
+}  
+
+     </tbody>
+
+ </table>
+
+    </div>
+  </div>
+<script>
+    $(document).ready(function () {
+        $("MyDataTable").DataTable();
+    })
+</script>
+
+

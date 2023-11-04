@@ -1,0 +1,158 @@
+﻿@*@model ReliableCabs.Models.CashCollectedModel*@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible"  >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   @* added for tables*@
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+ 
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/plugins/images/favicon.png">
+    <title>Reliable-Cabs</title>
+    <!-- ===== Bootstrap CSS ===== -->
+    <link href="~/Content/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ===== Plugin CSS ===== -->
+     
+    <link href="~/Content/plugins/components/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <link href='~/Content/plugins/components/fullcalendar/fullcalendar.css' rel='stylesheet'>
+
+    <!-- ===== Animation CSS ===== -->
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <!-- ===== Custom CSS ===== -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+  
+    <!-- ===== Color CSS ===== -->
+    <link href="~/Content/css/colors/red.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @* added for tables*@
+   @* <link href="~/Content/DataTable/css/jquery.dataTables.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>*@
+
+
+</head>
+
+<body class="mini-sidebar fix-header">
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <!-- ===== Top-Navigation ===== -->
+       
+        <!-- ===== Top-Navigation-End ===== -->
+        <!-- ===== Left-Sidebar ===== -->
+        <aside class="sidebar">
+            <div class="scroll-sidebar">
+                <nav class="sidebar-nav">
+                    <ul id="side-menu">
+                        <li>
+                            <a class=" waves-effect" href="../Dashboard/Index" aria-expanded="false"><i class="icon-grid fa-fw"></i> <span class="hide-menu"> DashBoard</span></a>
+                           
+                        </li>
+                        <li class="two-column">
+                            <a class="waves-effect" href="../Driver/Index"  aria-expanded="false"><i class="icon-notebook fa-fw"></i> <span class="hide-menu"> Driver </span></a>
+                            
+                        </li>
+                          <li class="two-column">
+                            <a class="waves-effect" href="../Subscription/Index" aria-expanded="false"><i class="icon-equalizer fa-fw"></i> <span class="hide-menu"> Subscription</span></a>
+                            
+                        </li>
+                        <li class="two-column">
+                             <img src="../Content/plugins/images/logo_reliablecabs.png" alt="home" class="ch1" />
+                        </li>
+                      
+                        <li class="two-column">
+                            <a class="waves-effect" href="../SubscriptionTrans/SubscriptionTrans" aria-expanded="false"><i class="icon-layers fa-fw"></i> <span class="hide-menu">Transactions</span></a>
+                            
+                        </li>
+                         <li class="two-column">
+                            <a class="waves-effect" href="../Report/RptGetAllDrivers?statusid=1" aria-expanded="false"><i class="icon-layers fa-fw"></i> <span class="hide-menu">Reports</span></a>
+                         </li>
+                    
+                        <li class="two-column">
+                            <a class="waves-effect" href="../Funds/Index" aria-expanded="false"><i class="fa fa-usd fa-fw"></i><span class="hide-menu">Funds</span></a>
+                            
+                        </li> 
+                        <li class="two-column cvb">
+                            <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><span class="hide-menu cart-box"> <input type="text" class="form-control welcome-carttext" id="Pendingamtnew" readonly="true"> </span></a>
+                            
+                        </li>
+                   @*  <li class="two-column cvb">
+                            <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><span class="hide-menu cart-box"> <input type="text" class="form-control welcome-carttext" id="Pendingamtnew"> </span></a>
+                            
+                        </li>*@
+                       
+            
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- ===== Left-Sidebar-End ===== -->
+        <!-- Page Content -->
+        <div class="page-wrapper">
+            <div class="container-fluid">
+            
+                
+        @RenderBody()
+   
+       
+            <footer class="footer t-a-c">
+                © 2020 Reliable-Cabs
+            </footer>
+        </div>
+        <!-- /#page-wrapper -->
+                 
+    </div>
+    <!-- /#wrapper -->
+    </div>
+    <!-- jQuery -->
+    <script src="../Content/plugins/components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../Content/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="../Content/js/sidebarmenu.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="../Content/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="../Content/js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../Content/js/custom.js"></script>
+   @* Autocomplete*@
+        <script src="../Content/js/custom.min.js"></script>
+    <!-- jQuery peity -->
+    <script src="../Content/plugins/components/peity/jquery.peity.min.js"></script>
+    <script src="../Content/plugins/components/peity/jquery.peity.init.js"></script>
+@* added*@
+         <script src="../Content/plugins/components/chartist-js/dist/chartist.min.js"></script>
+    <script src="../Content/plugins/components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src='../Content/plugins/components/moment/moment.js'></script>
+    <script src='../Content/plugins/components/fullcalendar/fullcalendar.js'></script>
+    <script src="../Content/js/db2.js"></script>
+    
+@*<end added*@
+    <!--Style Switcher -->
+    <script src="../Content/plugins/components/styleswitcher/jQuery.style.switcher.js"></script>
+         <!-- Date Picker Plugin JavaScript -->
+   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@RenderSection("scripts",false);
+</body>
+
+</html>

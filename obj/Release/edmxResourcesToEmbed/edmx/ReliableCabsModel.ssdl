@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReliablecabsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CashCollected">
+    <Key>
+      <PropertyRef Name="CashAmountId" />
+    </Key>
+    <Property Name="CashAmountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CashAmount" Type="money" />
+    <Property Name="RefNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="70" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="DriverLicenceNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="BankDetails" Type="nvarchar" MaxLength="150" />
+    <Property Name="SimNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="NamePlateNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhysicalAddress" Type="nvarchar" MaxLength="1000" />
+    <Property Name="OtherInfo" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ClientReturnTrans">
+    <Key>
+      <PropertyRef Name="ClientReturnTransId" />
+    </Key>
+    <Property Name="ClientReturnTransId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="SubTransId" Type="int" />
+    <Property Name="TransDate" Type="datetime" />
+    <Property Name="CashAmount" Type="money" />
+    <Property Name="ChequeAmount" Type="money" />
+    <Property Name="ChequeNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="OnlineAmount" Type="money" />
+    <Property Name="AdvanceAdjustment" Type="money" />
+    <Property Name="LoanToDriver" Type="money" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="LoanTrans">
+    <Key>
+      <PropertyRef Name="LoanTransId" />
+    </Key>
+    <Property Name="LoanTransId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="SubTransId" Type="int" />
+    <Property Name="TransDate" Type="datetime" />
+    <Property Name="LoanCashAmount" Type="money" />
+    <Property Name="LoanChequeAmount" Type="money" />
+    <Property Name="LoanChequeNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="LoanOnlineAmount" Type="money" />
+    <Property Name="LoanToDriver" Type="money" />
+    <Property Name="RentRemarks" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role" Type="nchar" MaxLength="15" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PeriodType">
+    <Key>
+      <PropertyRef Name="PeriodTypeId" />
+    </Key>
+    <Property Name="PeriodTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PeriodType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RentHold">
+    <Key>
+      <PropertyRef Name="RentHoldID" />
+    </Key>
+    <Property Name="RentHoldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" />
+    <Property Name="RentHoldStartdate" Type="date" />
+    <Property Name="RentHoldStopdate" Type="date" />
+    <Property Name="RentoutstandingAmt" Type="money" />
+    <Property Name="Createddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Subscription">
+    <Key>
+      <PropertyRef Name="SubscriptionId" />
+    </Key>
+    <Property Name="SubscriptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Terminal" Type="nvarchar" MaxLength="50" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="SubscriptionStartDate" Type="datetime" />
+    <Property Name="RentAmount" Type="money" />
+    <Property Name="PeriodTypeId" Type="int" />
+    <Property Name="SubscriptionEndDate" Type="datetime" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="EfposServiceCharge" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ChitsCommission" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="LoanAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="LoanDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SubscriptionTrans">
+    <Key>
+      <PropertyRef Name="SubTransId" />
+    </Key>
+    <Property Name="SubTransId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubscriptionId" Type="int" Nullable="false" />
+    <Property Name="EfposAmount" Type="money" />
+    <Property Name="ChitsAmount" Type="money" />
+    <Property Name="RentAmount" Type="money" />
+    <Property Name="TransDate" Type="datetime" />
+    <Property Name="EftposCommCharge" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ChitsCommCharge" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="EftposchargeAmount" Type="money" />
+    <Property Name="ChitsChargeAmount" Type="money" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <Function Name="AddCashCollectedDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cashamount" Type="money" Mode="In" />
+    <Parameter Name="RefNo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AddClientDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="DriverLicenceNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankDetails" Type="nvarchar" Mode="In" />
+    <Parameter Name="SimNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="NamePlateNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="PhysicalAddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="OtherInfo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AddClientReturnTransDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+    <Parameter Name="SubTransId" Type="int" Mode="In" />
+    <Parameter Name="CashAmount" Type="money" Mode="In" />
+    <Parameter Name="ChequeAmount" Type="money" Mode="In" />
+    <Parameter Name="ChequeNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="OnlineAmount" Type="money" Mode="In" />
+    <Parameter Name="AdvanceAdjustment" Type="money" Mode="In" />
+    <Parameter Name="LoanToDriver" Type="money" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AddLoanTransDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+    <Parameter Name="SubTransId" Type="int" Mode="In" />
+    <Parameter Name="LoanCashAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanChequeAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanChequeNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="LoanOnlineAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanToDriver" Type="money" Mode="In" />
+    <Parameter Name="RentRemarks" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AddLoginDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AddRentHoldDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AddSubscription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+    <Parameter Name="Terminal" Type="nvarchar" Mode="In" />
+    <Parameter Name="StatusId" Type="int" Mode="In" />
+    <Parameter Name="SubscriptionStartDate" Type="date" Mode="In" />
+    <Parameter Name="RentAmount" Type="decimal" Mode="In" />
+    <Parameter Name="PeriodTypeId" Type="int" Mode="In" />
+    <Parameter Name="SubscriptionEndDate" Type="date" Mode="In" />
+    <Parameter Name="Notes" Type="nvarchar" Mode="In" />
+    <Parameter Name="EfposServiceCharge" Type="decimal" Mode="In" />
+    <Parameter Name="ChitsCommission" Type="decimal" Mode="In" />
+    <Parameter Name="LoanAmount" Type="decimal" Mode="In" />
+    <Parameter Name="LoanDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="AddSubscriptionTransDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubscriptionId" Type="int" Mode="In" />
+    <Parameter Name="EfposAmount" Type="money" Mode="In" />
+    <Parameter Name="ChitsAmount" Type="money" Mode="In" />
+    <Parameter Name="RentAmount" Type="money" Mode="In" />
+    <Parameter Name="EftposCommCharge" Type="decimal" Mode="In" />
+    <Parameter Name="ChitsCommCharge" Type="decimal" Mode="In" />
+    <Parameter Name="Comments" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetCashFundDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetCashReturnDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetChitsPaymentHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetCommissionDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getdriversdetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetEftposPaymentHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetLoanAdjustmentDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetMonthYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GetPaymentHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetPaymentHistory1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetPaymentsHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetRentPaymentHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSubscriptionDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSubTransById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubTransId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSubTransPaymentDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubTransId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTotalTransPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubscriptionId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTotalTransPayment1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubscriptionId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTransDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="RptAllSubTransDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RptdashboardmonthTrans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RptdashboardTrans" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RptListDriverDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StatusID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="RptSubTransDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="clientId" Type="int" Mode="In" />
+    <Parameter Name="startdate" Type="date" Mode="In" />
+    <Parameter Name="enddate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="Sp_TotalRentAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spdeleteloan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="clientid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateEftopsDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubTransId" Type="int" Mode="In" />
+    <Parameter Name="EfposAmount" Type="money" Mode="In" />
+    <Parameter Name="ChitsAmount" Type="money" Mode="In" />
+    <Parameter Name="Comments" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateSubscription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubscriptionId" Type="int" Mode="In" />
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+    <Parameter Name="Terminal" Type="nvarchar" Mode="In" />
+    <Parameter Name="StatusId" Type="int" Mode="In" />
+    <Parameter Name="SubscriptionStartDate" Type="datetime" Mode="In" />
+    <Parameter Name="RentAmount" Type="money" Mode="In" />
+    <Parameter Name="PeriodTypeId" Type="int" Mode="In" />
+    <Parameter Name="SubscriptionEndDate" Type="datetime" Mode="In" />
+    <Parameter Name="Comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="EfposServiceCharge" Type="money" Mode="In" />
+    <Parameter Name="ChitsCommission" Type="money" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UpdateSubscriptionDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubscriptionId" Type="int" Mode="In" />
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+    <Parameter Name="Terminal" Type="nvarchar" Mode="In" />
+    <Parameter Name="StatusId" Type="int" Mode="In" />
+    <Parameter Name="SubscriptionStartDate" Type="datetime" Mode="In" />
+    <Parameter Name="RentAmount" Type="money" Mode="In" />
+    <Parameter Name="PeriodTypeId" Type="int" Mode="In" />
+    <Parameter Name="Comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="EfposServiceCharge" Type="money" Mode="In" />
+    <Parameter Name="ChitsCommission" Type="money" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UpdateTransDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubTransId" Type="int" Mode="In" />
+    <Parameter Name="EfposAmount" Type="money" Mode="In" />
+    <Parameter Name="ChitsAmount" Type="money" Mode="In" />
+    <Parameter Name="CashAmount" Type="money" Mode="In" />
+    <Parameter Name="ChequeAmount" Type="money" Mode="In" />
+    <Parameter Name="ChequeNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="RentAmount" Type="money" Mode="In" />
+    <Parameter Name="OnlineAmount" Type="money" Mode="In" />
+    <Parameter Name="AdvanceAdjustment" Type="money" Mode="In" />
+    <Parameter Name="LoanToDriver" Type="money" Mode="In" />
+    <Parameter Name="Comments" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ReliablecabsModelStoreContainer">
+    <EntitySet Name="CashCollected" EntityType="Self.CashCollected" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientReturnTrans" EntityType="Self.ClientReturnTrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoanTrans" EntityType="Self.LoanTrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PeriodType" EntityType="Self.PeriodType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentHold" EntityType="Self.RentHold" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubscriptionTrans" EntityType="Self.SubscriptionTrans" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

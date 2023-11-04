@@ -1,0 +1,282 @@
+﻿@model ReliableCabs.Models.ClientModel
+
+@{
+    ViewBag.Title = "InsertDriverDetails";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+}
+
+
+
+
+ <div class="panel-body">
+  
+     <div class="row">
+				   <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="panel panel-info welcome-panel">
+                           
+                            <div class="panel-wrapper collapse in" aria-expanded="true">
+      
+                                    <form action="#" class="form-horizontal">
+                                        <div class="form-body">
+										
+										   <div class="subscription-part" style="text-align:center;background-color:#81e7f7">
+                                            <h3 class="panel-header" >DRIVER DETAILS</h3>
+                                            <p class="panel-sub-title" > Please Complete the form </p>
+											</div>
+											
+                                            <hr class="m-t-0 m-b-40">
+                                                <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">FIRST NAME</label>
+                                                        <div class="col-md-7">
+                                                            <input  type="text" class="form-control" id="txtFirstName" title="FirstName" autocomplete = "off"> 
+                                                           @* @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })*@
+                                                             <p id="statusname"></p>
+                                                        </div>
+                                                           
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">LAST NAME</label>
+                                                        <div class="col-md-7">
+                                                             @Html.TextBoxFor(x => x.LastName, new { @class = "form-control",autocomplete = "off" })
+                    								</div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Mobile </label>
+                                                        <div class="col-md-7">
+														<input type="text" id="txtMobile"  title="Enter Mobile Number" class="form-control" autocomplete="off" />
+                                                           @* @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control " }) *@
+                                        				 <p id="statusmobile"></p>
+															</div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Email</label>
+                                                        <div class="col-md-7">
+                                                             @* @Html.TextBoxFor(x => x.Email, new { @class = "form-control",autocomplete = "off" })*@
+                                                            <input type="text" id="txtEmail"  title="Enter Mobile Number" class="form-control" autocomplete="off" />
+                                                             <p id="statusemail"></p>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                                </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Licence No.</label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.DriverLicenceNo, new { @class = "form-control",autocomplete = "off" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">BankDetails</label>
+                                                        <div class="col-md-7">
+                                                              @Html.TextBoxFor(x => x.BankDetails, new { @class = "form-control",autocomplete = "off" })
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>  
+                                                </div>                                          
+                                            <!--/row-->
+                                           <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5"> Sim Number</label>
+                                                        <div class="col-md-7">
+                                                                @Html.TextBoxFor(x => x.SimNumber, new { @class = "form-control ",autocomplete = "off" })
+														
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Name PlateNumber</label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.NamePlateNumber, new { @class = "form-control",autocomplete = "off" })
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            </div>
+                                            <!--/row-->
+                                           <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Physical Address</label>
+                                                        <div class="col-md-7">
+                                                           @Html.TextBoxFor(x => x.PhysicalAddress, new { @class = "form-control" ,autocomplete = "off"})  </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                               @* <div class="row">*@
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Other Info</label>
+                                                        <div class="col-md-7">														
+                                                             @Html.TextBoxFor(x => x.OtherInfo, new { @class = "form-control" ,autocomplete = "off"})  
+													@Html.TextBoxFor(m => m.ClientId, new { style = "display: none;" })
+                                                           	</div>
+															</div>
+                                                    </div>
+                                                @*</div>*@
+                                                <!--/span-->
+                                            </div>
+                                           <!--/row-->
+   
+                                         
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <button type="button" id="btnSubmit"  class="btn btn-success" >Submit</button>
+                          @* <button type="button" onclick="btnClick()" class="btn btn-success"> Submit</button>*@
+                                                                              
+                                                             <input type="hidden"  id="txtclientid"/>
+                                                             </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6"> </div>
+                                            </div>
+                                        </div>
+
+                                            </div>
+
+                                           
+                                    </form>
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+					 <div class="col-md-2"></div>
+                </div>   
+ 
+    </div>
+<script src="~/Content/js/jquery-2.2.0.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        document.getElementById('Pendingamtnew').style.display = 'none';
+
+      $('#txtMobile').change(function () {
+            //function MobileCheck() {
+            $("#statusmobile").html('<font color="red"> </font>');
+            $.post("@Url.Action("MobileCheckAvailability","Driver")",
+            {
+                userdata: $("#txtMobile").val()
+            },
+        function (data) {
+            if (data != 0) {
+                $("#statusmobile").html('<font color="red"> Already Mobile existing .Try Another</font>');
+            }
+            else {
+                $("#statusmobile").html();
+            }
+        });
+      });
+
+
+      @*  $('#txtFirstName').change(function () {
+            //function MobileCheck() {
+            $("#statusname").html('<font color="red"> </font>');
+            $.post("@Url.Action("NameCheckAvailability","Driver")",
+            {
+                userdata: $("#txtFirstName").val()
+            },
+        function (data) {
+            if (data != 0) {
+                $("#statusname").html('<font color="red"> Already Name Exists .Try Another</font>');
+            }
+            else {
+                $("#statusname").html();
+            }
+        });
+        });*@
+
+
+        $('#txtEmail').change(function () {
+            //function MobileCheck() {
+
+            $("#statusemail").html('<font color="red"> </font>');
+            $.post("@Url.Action("EmailCheckAvailability","Driver")",
+            {
+                userdata: $("#txtEmail").val()
+            },
+        function (data) {
+            //alert(data)
+            if (data == 1) {
+                $("#statusemail").html('<font color="red"> Already UserName Exists .Try Another</font>');
+                $('#txtEmail').html(' ');
+            }
+            else if (data == 2) {
+                $("#statusemail").html('<font color="red"> Please Enter Valid Email Address</font>');
+            } else {
+                $("#statusemail").html();
+            }
+        });
+          });
+
+
+
+        $("#btnSubmit").click(function () {
+
+            var client = {};
+            client.ClientId = document.getElementById('ClientId').value;
+            client.FirstName = document.getElementById('txtFirstName').value;
+            if (client.FirstName == '') {
+                alert("Please enter FirstName");
+                return false;
+            }
+            client.LastName = document.getElementById('LastName').value;
+            client.Mobile = document.getElementById('txtMobile').value;
+            if (client.Mobile == '') {
+                alert("Please enter Mobile");
+                return false;
+            }
+            client.Email = document.getElementById('txtEmail').value;
+            client.DriverLicenceNo = document.getElementById('DriverLicenceNo').value;
+            client.BankDetails = document.getElementById('BankDetails').value;
+            client.SimNumber = document.getElementById('SimNumber').value;
+            client.NamePlateNumber = document.getElementById('NamePlateNumber').value;
+            client.PhysicalAddress = document.getElementById('PhysicalAddress').value;
+            client.OtherInfo = document.getElementById('OtherInfo').value;
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Driver/InsertDriverDetail",
+                data: '{client:' + JSON.stringify(client) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    alert("Submitted successfully");
+                    window.location.href = "../Driver/Index"
+                }
+            });
+         
+
+
+        });
+  })
+    </script>

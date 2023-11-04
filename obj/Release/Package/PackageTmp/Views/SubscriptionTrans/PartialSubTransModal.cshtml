@@ -1,0 +1,300 @@
+﻿@model ReliableCabs.Models.SubscriptionTrans
+
+
+
+@*	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">*@
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-body">
+
+
+@if (Model.ListTotalTransdetails != null)
+{
+    
+ //table-hover   
+      
+
+<table class="tablesaw table-striped  table-bordered table" data-tablesaw-mode="columntoggle">
+                                <thead>
+                                    <tr style="background-color:lightblue">
+                                    <th style="text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist"> Transactions</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cash Amount</th>
+                                        <td><input type="text" id="txtCashAmount" style="border-style:hidden;background-color: transparent"  title="Enter cash amount" pattern="^[0-9]*$" /></td>
+                                   <td id="clientid" hidden> @Model.ClientId</td>
+                                    
+                                    </tr>
+                                      <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cheque Amount</th>                                       
+                                        <td><input type="text" id="txtChequeAmount" style="border-style:hidden; background-color: transparent"  title="Enter Cheque amount" pattern="^[0-9]*$" /></td>
+                                        <td id="subscriptionid" hidden> @Model.SubscriptionId </td>
+                                    </tr>
+                                     <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Online Amount</th>
+                                        <td><input type="text" id="txtOnlineAmount" style="border-style:hidden;background-color: transparent"  title="Enter Online amount" pattern="^[0-9]*$" /></td>
+                                   <td id="totalAmt" hidden> @Model.TotalAmount</td>
+                                    
+                                    </tr>
+                                     
+                              
+                                    @*<tr>
+                                        <th scope="col"data-tablesaw-sortable-col data-tablesaw-priority="persist"  >Cash Amount</th>
+                                        <td ><input type="text" id="txtCashAmount" style="border-style:hidden;background-color: transparent" title="Enter cash amount" pattern="^[0-9]*$" /></td>
+                                     
+                                         <td id="clientid" hidden> @Model.ClientId </td>
+                                         </tr>*@
+                                  
+                                  
+                                     <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Advance Adjustment</th>
+                                        <td><input type="text" id="txtAdvanceAmount" style="border-style:hidden;background-color: transparent"  title="Enter Advance amount" pattern="^[0-9]*$"  /></td>
+                                           <td id ="totalamt" hidden ></td>
+                                        </tr>
+                                  
+                                      <tr>
+                               
+                                      <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Remarks</th>
+                                        <td><input type="text" id="txtRmks" style="border-style:hidden;background-color: transparent" /></td>
+
+                                      <td id ="totalvalue" hidden></td>
+                                          <td id ="loanamt" hidden >@Model.PendingLoanAmount</td>
+                                    </tr>
+  
+                               </tbody>
+                            </table>
+}
+
+</div>
+                                       
+                                        
+                                        <div class="modal-footer">
+										    <button type="button" class="btn btn-primary" onclick="AddClientReturnTrans()">Submit</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                                         
+                                        </div>
+                                      </div>  
+                                    </div>
+                              @*  </div>*@
+    
+    
+                         	
+				 <!-------------------------Model popups End ------------------------------------------>	
+								
+            
+<script src="~/Content/js/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript">
+       
+
+        
+        $("#txtCashAmount").on("keyup", function () {
+
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+          
+            var Cash = document.getElementById('txtCashAmount').value;
+            if (!isNaN(Cash)) {
+                var Cashamt = Cash;
+                if (Cashamt >= totalAmt) {
+                    alert('Sum exceeds total amount');
+                    var val1 = document.getElementById('txtCashAmount').value
+                    document.getElementById('txtCashAmount').value = val1.substring(0, val.length - 3);
+                }
+            }
+            else {
+                Cashamt = '0';
+            }
+            var Cheque = document.getElementById('txtChequeAmount').value;
+            var Chequeamt = isNaN(parseInt(Cheque)) ? 0 : parseInt(Cheque);
+
+            var Online = document.getElementById('txtOnlineAmount').value;
+            var Onlineamt = isNaN(parseInt(Online)) ? 0 : parseInt(Online);
+
+            var TotalValue = parseInt(Chequeamt) + parseInt(Cashamt) + parseInt(Onlineamt);
+               document.getElementById('totalvalue').innerText = TotalValue;
+
+                var totalAmt = parseInt(document.getElementById('totalAmt').innerText);
+                document.getElementById('totalamt').innerText = totalAmt;
+                if (TotalValue >= totalAmt) {
+                    alert('Sum exceeds total amount');
+                    var val1 = document.getElementById('txtCashAmount').value
+                    document.getElementById('txtCashAmount').value = val1.substring(0, val.length - 3);
+                }
+        });
+
+        $("#txtChequeAmount").on("keyup", function () {
+
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            var Cheque = document.getElementById('txtChequeAmount').value;
+            if (!isNaN(Cheque)) {
+                var Chequeamt = Cheque;
+                if (Chequeamt >= totalAmt) {
+                    alert('Sum exceeds total amount');
+                    var val1 = document.getElementById('txtChequeAmount').value
+                    document.getElementById('txtChequeAmount').value = val1.substring(0, val.length - 3);
+                }
+            }
+            else {
+                Chequeamt = '0';
+            }
+            var Cash = document.getElementById('txtCashAmount').value;
+            var Cashamt = isNaN(parseInt(Cash)) ? 0 : parseInt(Cash)
+
+            var Online = document.getElementById('txtOnlineAmount').value;
+            var Onlineamt = isNaN(parseInt(Online)) ? 0 : parseInt(Online);
+            
+            var TotalValue = parseInt(Chequeamt) + parseInt(Cashamt) + parseInt(Onlineamt);
+            if (!isNaN(TotalValue)) {
+                document.getElementById('totalvalue').innerText = TotalValue;
+            }
+            var totalAmt = parseInt(document.getElementById('totalAmt').innerText);
+            if (TotalValue > totalAmt) {
+                alert('Sum exceeds total amount');
+                this.value = val.substring(0, val.length - 3);
+            }
+
+
+        });
+
+        $("#txtOnlineAmount").on("keyup", function () {
+
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            var Cash = document.getElementById('txtCashAmount').value;
+            var Cashamt = isNaN(parseInt(Cash)) ? 0 : parseInt(Cash)
+
+            var Cheque = document.getElementById('txtChequeAmount').value;
+            var Chequeamt = isNaN(parseInt(Cheque)) ? 0 : parseInt(Cheque);
+
+            var Online = document.getElementById('txtOnlineAmount').value;
+            if (!isNaN(Online)) {
+                var Onlineamt = Cash;
+                if (Onlineamt >= totalAmt) {
+                    alert('Sum exceeds total amount');
+                    var val1 = document.getElementById('txtOnlineAmount').value
+                    document.getElementById('txtOnlineAmount').value = val1.substring(0, val.length - 3);
+                }
+            }
+            else {
+                Cashamt = '0';
+            }
+            var TotalValue = parseInt(Chequeamt) + parseInt(Cashamt) + parseInt(Onlineamt);
+            //var TotalValue = parseInt(Cheque) + parseInt(Cash) + parseInt(Onlineamt);
+            if (!isNaN(TotalValue)) {
+                document.getElementById('totalvalue').innerText = TotalValue;
+            }
+            var totalAmt = parseInt(document.getElementById('totalAmt').innerText);
+            if (TotalValue > totalAmt) {
+                alert('Sum exceeds total amount');
+                this.value = val.substring(0, val.length - 3);
+            }
+
+
+        });
+
+        $("#txtAdvanceAmount").on("keyup", function () {
+
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            var Cheque = document.getElementById('txtChequeAmount').value;
+            var Cash = document.getElementById('txtCashAmount').value;
+            var Online = document.getElementById('txtOnlineAmount').value;
+            var Advance = document.getElementById('txtAdvanceAmount').value;
+
+            var TotalValue = parseInt(Cheque) + parseInt(Cash) + parseInt(Online) + parseInt(Advance);
+            if (!isNaN(TotalValue)) {
+                document.getElementById('totalvalue').innerText = TotalValue;
+            }
+            var totalAmt = parseInt(document.getElementById('totalAmt').innerText);
+            if (TotalValue > totalAmt) {
+                alert('Sum exceeds total amount');
+                this.value = val.substring(0, val.length - 3);
+            }
+
+            var loanpending = parseInt(document.getElementById('loanamt').innerText);
+
+            if (Advance >= loanpending) {
+                alert('Sum exceeds Loan amount');
+            }
+
+        });
+   
+        function AddClientReturnTrans() {
+             var clientid = document.getElementById('clientid').innerText;
+            var cashAmount = document.getElementById('txtCashAmount').value;
+            var chequeAmount = document.getElementById('txtChequeAmount').value;
+            var onlineAmount = document.getElementById('txtOnlineAmount').value;
+            var AdvanceAdjustment = document.getElementById('txtAdvanceAmount').value;
+            var Comments = document.getElementById('txtRmks').value;
+
+            $.ajax({
+                url: '@Url.Action("AddClientReturnTrans", "SubscriptionTrans")',
+                type: "POST",
+                data:
+                {
+                    Clientid:clientid,
+                    cashAmount: cashAmount,
+                    chequeAmount: chequeAmount,
+                    onlineAmount: onlineAmount,
+                    AdvanceAdjustment : AdvanceAdjustment,
+                    Comments: Comments
+                },
+
+                success: function (data) {
+                    
+                    alert("Submitted");
+                    var id = clientid;
+                    $("#ProdPartials").load('@(Url.Action("GetTransactionDetails","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+                    $("#ProdPartial1").load('@(Url.Action("GetTransactionDetails1","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+                    $("#ProdPartials1").load('@(Url.Action("GetTransHistory","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+                     document.getElementById('txtCashAmount').value =" ";
+                     document.getElementById('txtChequeAmount').value = " ";
+                     document.getElementById('txtOnlineAmount').value = " ";
+                     document.getElementById('txtAdvanceAmount').value = " ";
+                     document.getElementById('txtRmks').value = " ";
+                     $('.exampleModal').hide();
+                     $('#ViewModal').hide();
+                     $("#modal-dialog").modal("hide");
+                     $("#modal-content").modal("hide");
+                    
+                    var clientid = document.getElementById('clientid').innerText;
+                },
+
+                error: function (jqXHR, status, text) {
+                    alert("Not Submitted ");
+
+                  
+                }
+
+
+            });  
+
+
+        }
+   
+</script>

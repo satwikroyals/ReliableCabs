@@ -1,0 +1,367 @@
+﻿@model ReliableCabs.Models.SubscriptionTrans
+
+
+
+@if (Model != null)
+{
+    foreach (var i in Model.ListCommDetails)
+    {
+    <div class="col-sm-6"> 
+	   <div class="white-box">
+   <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                                <thead>
+                                    <tr style="background-color:lightgray">
+                                        <th style="text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Transactions</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Date</th>
+                                        <td>@Convert.ToDateTime(i.Date).ToString("dd/MM/yyyy")</td>
+                                         <td id="EftposCommId" hidden> @i.EfposServiceCharge</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Amount ($)</th>
+                                     <td style="background-color: lightgoldenrodyellow">
+                                        <input type="text" hidden id="currency" style="width:5px"  />
+                                         <input type="text" id="txtEftposAmount" style="border-style:none;background-color: lightgoldenrodyellow" title="Enter Eftpos Amount" pattern="^[0-9]*$" /> </td>
+                                    </tr>
+                                  @*  <tr>
+                                        <th  scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Service (%)</th>
+                                        <td id="EftposCommId"> @i.EfposServiceCharge</td>
+                                    </tr>*@
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Return Amount</th>
+                                        <td> <input type="text" id="txtResults" style="border-style:hidden;background-color:transparent"   readonly="true" /><input type="hidden" id="txtResult1" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Remarks</th>
+                                        <td style="background-color: lightgoldenrodyellow"><input type="text" id="Remarks" style="border-style:none;background-color: lightgoldenrodyellow"  title="Enter Comments" name="Remarks" /></td>
+                                    </tr>
+                                            
+                                      <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Total Amount</th>
+                                         <td > <input type="text" id="txtTotalResult"   style="border-style:hidden;background-color:transparent" readonly="true" /> <input type="hidden" id="txtTotalResult1" /> </td>
+
+                                        <td id="number" hidden>@Html.TextBoxFor(m => m.ClientId, new { style = "display: none;" })  </td>
+                                     </tr>
+                         </tbody>
+                            </table>
+
+      @if (Model != null)
+     {
+    foreach (var k in Model.ListTransDetails)
+    {
+       
+							<div class="col-lg-2 col-sm-4 col-xs-12">
+                                 @*   <button class="btn btn-block btn-danger">Submit</button>*@
+                                <button type="button" id="AddToSubTrans" class="btn btn-block btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Submit</button>
+                          
+                                  </div>
+        
+       
+   
+      }
+       
+           	 <!-------------------------Model popups Start ------------------------------------------>	
+    foreach (var k in Model.ListCommDetails)
+    {
+        <div class="col-lg-2 col-sm-4 col-xs-12">
+                                   @* <button class="btn btn-block btn-info1 cvb " data-toggle="modal" data-target="#exampleModal" onclick="popupModel(@k.ClientId)">Transaction</button>*@
+             <button class="btn btn-block btn-info1 cvb " data-toggle="modal" data-target="#exampleModal" id =popupModel>Transaction</button>
+                                </div>
+      }							
+      }
+    	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">       			
+                                           
+                              <div id="ViewModal">      
+                                   @Html.Partial("PartialSubTransModal", Model)                        
+                            							
+                             </div>
+                                           
+                   </div>                   
+								
+				 <!-------------------------Model popups End ------------------------------------------>	
+								
+                        </div>
+ </div>
+
+			  
+    <div class="col-sm-6"> 
+		                      <div class="white-box">
+                             <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                                <thead>
+                                    <tr style="background-color:lightgray">
+                                    <th style="text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Transactions</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Date</th>
+                                        <td>@Convert.ToDateTime(i.Date).ToString("dd/MM/yyyy")</td>
+                                        <td id="chitcommId" hidden> @i.ChitsCommission</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Amount ($)</th>
+                                        <td style="background-color: lightgoldenrodyellow" id="currency1">   
+                                          <input type="text" id="txtChitsAmount" style="border-style:none;background-color: lightgoldenrodyellow"  title="Enter Chits Amount" pattern="^[0-9]*$"  /></td>
+                                    </tr>
+                                  @*  <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Service (%)</th>
+                                        <td id="chitcommId"> @i.ChitsCommission</td>
+                                    </tr>*@
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Return Amount</th>
+                                        <td> <input type="text" id="txtResult"  style="border-style:hidden;background-color:transparent"   readonly="true" /><input type="hidden" id="txtResult2" /></td>
+                                    </tr>
+                                    
+                               @*/tbody>
+                            </table>*@
+							@* <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                                <thead>*@
+                                    <tr style="background-color:lightgray">
+                                    <th style="text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Rent Transactions</th>
+                                        
+                                    </tr>
+                               @* </thead>
+                                <tbody>*@
+                                    <tr>
+                                         <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Rent Amount</th>
+                                        <td style="background-color: lightgoldenrodyellow" id="currency2">   
+                                          <input type="text" id="txtRentAmount" style="border-style:none;background-color: lightgoldenrodyellow"  title="Enter Rent Amount" pattern="^[0-9]*$"   /></td>
+                                  
+                                    </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+				  </div>
+				  
+}    
+}
+
+@*<script src="~/Content/js/jquery-2.2.0.min.js"></script>*@
+    <script type="text/javascript">
+    
+
+ $(document).ready(function () {
+             
+        $("#txtChitsAmount").on("keyup", function () {
+         
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+         
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            document.getElementById('currency').value = '$';
+             
+            var txtFirstNo = document.getElementById('txtChitsAmount').value;
+
+
+            var txtSecondNo = document.getElementById('chitcommId').innerText;
+
+            var result1 = (parseInt(txtFirstNo) / 100) * parseInt(txtSecondNo);
+
+            var result = parseInt(txtFirstNo) - parseInt(result1)
+
+            if (!isNaN(result)) {
+                document.getElementById('txtResult').value = ' $' + result.toFixed(2);
+                document.getElementById('txtResult2').value = result;
+                var R1 = result;
+            }
+
+            var txtRentAmount = (parseInt(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtRentAmount)) {
+                txtTotalResult = ((parseInt(document.getElementById('txtResult1').value)) + (parseInt(document.getElementById('txtResult2').value)));
+                txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+            }
+            else {
+                txtTotalResult = ((parseInt(document.getElementById('txtResult1').value)) + (parseInt(document.getElementById('txtResult2').value)));
+            }
+
+            if (!isNaN(txtTotalResult)) {
+                document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+                document.getElementById('txtTotalResult1').value = txtTotalResult;
+            }
+        });
+
+        $("#txtEftposAmount").on("keyup", function () {
+             var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            // new  added code
+            var txtFirstNo = document.getElementById('txtEftposAmount').value;
+
+
+            var txtSecondNo = document.getElementById('EftposCommId').innerText;
+
+            var result1 = (parseInt(txtFirstNo) / 100) * parseInt(txtSecondNo);
+
+            var result = parseInt(txtFirstNo) - parseInt(result1)
+
+            if (!isNaN(result)) {
+                document.getElementById('txtResults').value = ' $' + result.toFixed(2);
+                document.getElementById('txtResult1').value = result;
+                var R2 = result;
+            }
+            var txtRentAmount = (parseInt(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtRentAmount)) {
+                txtTotalResult = ((parseInt(document.getElementById('txtResult1').value)) + (parseInt(document.getElementById('txtResult2').value)));
+                txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+            }
+            else {
+                txtTotalResult = ((parseInt(document.getElementById('txtResult1').value)) + (parseInt(document.getElementById('txtResult2').value)));
+            }
+            //txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtTotalResult)) {
+                document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+                document.getElementById('txtTotalResult1').value = txtTotalResult;
+            }
+            //end code
+        });
+
+        $("#txtRentAmount").on("keyup", function () {
+
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            document.getElementById('currency2').value = '$';
+
+            var txtRentAmount = (parseInt(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtRentAmount)) {
+                txtTotalResult = ((parseInt(document.getElementById('txtResult1').value)) + (parseInt(document.getElementById('txtResult2').value)));
+                txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+            }
+            else {
+                txtTotalResult = ((parseInt(document.getElementById('txtResult1').value)) + (parseInt(document.getElementById('txtResult2').value)));
+            }
+            //txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtTotalResult)) {
+                document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+                document.getElementById('txtTotalResult1').value = txtTotalResult;
+            }
+            if (txtRentAmount > txtTotalResult) {
+                alert("Please enter valid amount - Rent Amount exceeds Total Amount ");
+                document.getElementById('txtRentAmount').value = "";
+                var txtTotalResult = ((parseInt(document.getElementById('txtResult1').value)) + (parseInt(document.getElementById('txtResult2').value)));
+                document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+            }
+            
+           
+        });
+
+     
+           $("#popupModel").click(function () {
+             var clientid = document.getElementById('ClientId').value;
+            var TotalAmount = document.getElementById('txtTotalResult1').value;
+            if (!TotalAmount) {
+                alert("Please enter Eftpos and Chits amount ");
+
+                $('.exampleModal').hide();
+                $('#ViewModal').hide();
+                //$("#modal-dialog").modal("hide");
+                
+            }
+            else {
+                var total = @ViewBag.TotalAmount
+
+                $('.exampleModal').show();
+                $('#ViewModal').show();
+                //$("#modal-dialog").modal("show");
+
+                $.ajax({
+                    url: '@Url.Action("GetPartialSubTransModal", "SubscriptionTrans")',
+                    type: "POST",
+                    //data: data,
+                    data:
+                    {
+                        Clientid: clientid,
+                        TotalAmount: TotalAmount
+                    },
+                    success: function (data) {
+                       // alert("Submitted");
+                        var id = @ViewBag.ClientId
+                        $('#ViewModal').html(data);
+
+                    },
+                       error: function (jqXHR, status, text) {
+                        alert("Not Submitted ");
+                    }
+
+                });
+              
+            }
+
+        });
+
+       
+       
+      $("#AddToSubTrans").click(function () {
+            var clientid = document.getElementById('ClientId').value;
+           
+            var EfposAmount = document.getElementById('txtEftposAmount').value;
+            if (EfposAmount == "") {
+                alert("Please Enter Eftpos Amount");
+                return false;
+            }
+            var ChitsAmount = document.getElementById('txtChitsAmount').value;
+            if (ChitsAmount == "") {
+                alert("Please Enter Chits Amount");
+                return false;
+            }
+            var Comments = document.getElementById('Remarks').value;
+           
+            var chitsReturnAmount = document.getElementById('txtResult2').value;
+            var eftposReturnAmount = document.getElementById('txtResult1').value;
+            var TotalAmount = document.getElementById('txtTotalResult1').value;
+            var RentAmount = document.getElementById('txtRentAmount').value;
+           
+           
+            $.ajax({
+                url: '@Url.Action("SubTransInsert", "SubscriptionTrans")',
+                type: "POST",
+                //data: data,
+                data:
+                {
+                    Clientid:clientid,
+                    EfposAmount: EfposAmount,
+                    ChitsAmount: ChitsAmount,
+                    chitsReturnAmount: chitsReturnAmount,
+                    eftposReturnAmount: eftposReturnAmount,
+                    TotalAmount: TotalAmount,
+                    RentAmount: RentAmount,
+                    Comments: Comments
+                },
+
+
+                success: function (data) {                    
+                    alert("Submitted");
+                    var id = @ViewBag.ClientId
+                    $("#ProdPartials").load('@(Url.Action("GetTransactionDetails","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+                    $("#ProdPartial1").load('@(Url.Action("GetTransactionDetails1","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+                    $("#ProdPartials1").load('@(Url.Action("GetTransHistory","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+                },
+
+                error: function (jqXHR, status, text) {
+                    alert("Not Submitted ");                  
+                }
+
+
+            });
+          
+            });
+        });
+    </script>

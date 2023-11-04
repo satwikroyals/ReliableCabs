@@ -1,0 +1,187 @@
+﻿@model ReliableCabs.Models.CashCollectedModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+}
+
+ <div class="row colorbox-group-widget">
+                    <div class="col-md-3 col-sm-6 info-color-box" >
+                        <a href="../Driver/Index" >
+                        <div class="white-box">
+                            <div class="media bg-primary">
+                                <div class="media-body">
+                                    <h3 class="info-count">@Model.totalDrivers <span class="pull-right"><i class="mdi mdi-checkbox-marked-circle-outline"></i></span></h3>
+                                    <p class="info-text font-12">Total Drivers</p>
+                                   <p><span class="label label-rounded"> </span></p>
+                                     <p class="info-ot font-15">Active Drivers<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().activeDrivers).ToString("0.00")</span></p>
+   
+                                    
+                 <table style="width:100%;border-color:none">             
+                 <tr hidden>     
+                         @if (Model.ListFundsDetails.Count >0)
+        { <td id="NetAmount">@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().NetAmount).ToString("0.00")</td> }     
+                     else
+                     { <td id="NetAmount">0.00</td>
+                         }      
+      </tr></table>
+    
+  
+@*                                  <p class="info-ot font-15">Target<span class="label label-rounded">198</span></p>*@
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 info-color-box">
+                        <a href="../Reports/Index" >
+                        <div class="white-box">
+                            <div class="media bg-success">
+                                <div class="media-body">
+                                    <h3 class="info-count">@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totaleftposcommAmount).ToString("0.00")<span class="pull-right"><i class="mdi mdi-comment-text-outline"></i></span></h3>
+                                    <p class="info-text font-12">Eftpos Comm Amount</p>
+                                     <p class="info-ot font-15">Total Eftpos Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totalEftposAmt).ToString("0.00")</span></p>
+                                   <p class="info-ot font-15">Current Month Eftpos Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().totalEftposAmt).ToString("0.00")</span></p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 info-color-box">
+                          <a href="../Reports/Index" >
+                        <div class="white-box">
+                            <div class="media bg-danger">
+                                <div class="media-body">
+                                    <h3 class="info-count">&#36;@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totalChitscommAmount).ToString("0.00") <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
+                                    <p class="info-text font-12">Chits Comm Amount</p>
+                                     <p class="info-ot font-15">Total Chits Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totalChitsAmt).ToString("0.00")</span></p>
+                                    <p class="info-ot font-15">Current Month Chits Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().totalChitsAmt).ToString("0.00")</span></p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                              </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 info-color-box">
+                        <a href="../Reports/Index" >
+                        <div class="white-box">
+                            <div class="media bg-warning">
+                                <div class="media-body">
+                                    <h3 class="info-count">&#36;@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totalRentAmount).ToString("0.00")  <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
+                                    <p class="info-text font-12">Total Rent Amount</p>
+                                   @* <p class="info-ot font-15"><span class="label label-rounded"></span></p>*@
+                                      <p><span class="label label-rounded"> </span></p>
+                                    <p class="info-ot font-15">Current Month Rent Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().totalRentAmount).ToString("0.00")</span></p>
+                                </div>
+                            </div>
+                        </div>
+                            </a>
+                    </div>
+                </div>
+                <div class="row">
+                 <div class="row colorbox-group-widget">
+                    <div class="col-md-3 col-sm-6 info-color-box">
+                        <a href="../Funds/Index" >
+                        <div class="white-box">
+                            <div class="media bg-primary1">
+                                <div class="media-body"> 
+                                   @* <a class="waves-effect" href="../Driver/Index"  aria-expanded="false"></a>*@
+                                    <table >
+                                         @if (Model.ListFundsDetails.Count >0){
+                                        <tr>
+                                            <td> CREDIT :</td>
+                                            <td class="info-count1">@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().CreditAmount).ToString("0.00") </td><p class="info-count"><span class="pull-right"><i class="mdi mdi-checkbox-marked-circle-outline"></i></span></p>
+                                            </tr>
+                                        <tr>
+                                            <td> DEBIT :</td>
+                                            <td class="info-count1">@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().DebitAmount).ToString("0.00") </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                              <tr>
+                                            <td> CREDIT :</td>
+                                            <td class="info-count1">0.00 </td><p class="info-count"><span class="pull-right"><i class="mdi mdi-checkbox-marked-circle-outline"></i></span></p>
+                                            </tr>
+                                        <tr>
+                                            <td> DEBIT :</td>
+                                            <td class="info-count1">0.00 </td>
+                                            </tr>
+                                         }
+                                    </table>
+                                    <br />
+
+                                  
+                              
+                                   @if (Model.ListFundsDetails.Count >0){
+                              @*     <p><span class="label label-rounded"> </span></p>*@
+                                    <p class="info-ot font-15">Net Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().NetAmount).ToString("0.00")</span></p>
+                                  @* <p><span class="label label-rounded"> </span></p>*@
+                                     <p class="info-ot font-15">Current Month Credit Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().CreditAmount).ToString("0.00")</span></p>
+                                   }else
+                                   {
+                                        
+                                    <p class="info-ot font-15">Net Amount<span class="label label-rounded">0.00</span></p>
+                                  @* <p><span class="label label-rounded"> </span></p>*@
+                                     <p class="info-ot font-15">Current Month Credit Amount<span class="label label-rounded">0.00</span></p>
+                                  
+                                   }
+                                       </div>
+                            </div>
+                        </div>
+                            </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 info-color-box">
+                          <a href="../Funds/Index" >
+                        <div class="white-box">
+                            <div class="media bg-success1">
+                                <div class="media-body">
+                                    <h3 class="info-count">@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totalcashamt).ToString("0.00")<span class="pull-right"><i class="mdi mdi-comment-text-outline"></i></span></h3>
+                                    <p class="info-text font-12">Cash Amount</p>
+                                      <p><span class="label label-rounded"> </span></p>
+                                    <p class="info-ot font-15">Current Month Cash Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().totalChitsAmt).ToString("0.00")</span></p>
+                                </div>
+                            </div>
+                        </div>
+                              </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 info-color-box">
+                         <a href="../Reports/Index" >
+                        <div class="white-box">
+                            <div class="media bg-danger1">
+                                <div class="media-body">
+                                    <h3 class="info-count">&#36;@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totalChequeamt).ToString("0.00") <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
+                                    <p class="info-text font-12">Cheque Amount</p>
+                                      <p><span class="label label-rounded"> </span></p>
+                                     <p class="info-ot font-15">Current Month Cheque Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().totalChitsAmt).ToString("0.00")</span></p>
+                                </div>
+                            </div>
+                        </div>
+                             </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 info-color-box">
+                         <a href="../Reports/Index" >
+                        <div class="white-box">
+                            <div class="media bg-warning1">
+                                <div class="media-body">
+                                    <h3 class="info-count">&#36;@Convert.ToDecimal(Model.ListAmountDetails.FirstOrDefault().totalCompanyAdvance).ToString("0.00")  <span class="pull-right"><i class="mdi mdi-coin"></i></span></h3>
+                                    <p class="info-text font-12">Company Advance Amount</p>
+                                   @* <p class="info-ot font-15"><span class="label label-rounded"></span></p>*@
+                                      <p><span class="label label-rounded"> </span></p>
+                                     <p class="info-ot font-15">Current Month Advance Amount<span class="label label-rounded">@Convert.ToDecimal(Model.ListMonthlyAmounts.FirstOrDefault().totalCompanyAdvance).ToString("0.00")</span></p>
+                                </div>
+                            </div>
+                        </div>
+                             </a>
+                    </div>
+                </div>
+                </div>
+ <script>
+        $(document).ready(function () {
+            document.getElementById('Pendingamtnew').value = $("#NetAmount").text();
+
+
+
+        })
+
+</script>

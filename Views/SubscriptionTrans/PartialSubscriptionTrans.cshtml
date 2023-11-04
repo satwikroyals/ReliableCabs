@@ -1,0 +1,96 @@
+﻿@model ReliableCabs.Models.SubscriptionTrans
+
+
+
+@if (Model != null)  { 
+
+                    <div class="col-sm-12">
+			              <div class="white-box">
+                           <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                                <thead>
+                                    <tr style="background-color:lightgray">
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Name</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Terminal</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Mobile</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Licence No</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3">Start From</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Rent Frequency</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">Rent Amount</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">Rent Balance</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">Last Paid</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">Loan Amount</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">Loan Repayment </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach (var j in Model.ListTransDetails)
+                                        {
+                                            <td>@j.Name</td>
+                                            <td>@Model.Terminal</td>
+                                            <td>@Model.Mobile</td>
+                                            <td>@Model.DriverLicenceNo</td>
+                                            <td>@Convert.ToDateTime(Model.SubscriptionStartDate).ToString("dd/MM/yyyy")</td>
+                                            <td>@Model.RentFrequency</td>
+                                            <td>$@Convert.ToDecimal(Model.RentAmount).ToString("#.##")</td>
+                                            <td style="color:red">
+                                                @if (Model.RentBalance == 0 || Convert.ToString(Model.RentBalance).Trim().Length == 0 || Model.RentBalance <= 0)
+                                                {<p>$ 0</p>}
+                                                else
+                                                { <p>$@Convert.ToDecimal(Model.RentBalance).ToString("#.##")</p>}
+                                        </td>
+                                        @*
+
+        <td>@Convert.ToDateTime(Model.TransDate).ToString("dd/MM/yyyy")</td>*@
+
+                                        <td>
+                                            @if (Model.TransDate == null || Convert.ToString(Model.TransDate).Trim().Length == 0)
+                                            {<p>Null</p>}
+                                            else
+                                            { <p>@Convert.ToDateTime(Model.TransDate).ToString("dd/MM/yyyy")</p>}
+                                    </td>
+
+
+
+
+
+
+
+                                }
+                                        @if (Model.LoanAmount != null)
+                                        {
+                                            @*<td>$@Convert.ToDecimal(Model.LoanAmount).ToString("#.##")</td>*@
+                                            <td>
+                                                @if (Model.LoanAmount == 0 || Convert.ToString(Model.LoanAmount).Trim().Length == 0)
+                                                {<p>$ 0</p>}
+                                                else
+                                                { <p>$@Convert.ToDecimal(Model.LoanAmount).ToString("#.##")</p>}
+                                            </td>
+
+                                            <td>
+                                                @if (Model.PendingLoanAmount == 0 || Convert.ToString(Model.PendingLoanAmount).Trim().Length == 0)
+                                                {<p>$ 0</p>}
+                                                else
+                                                { <p>$@Convert.ToDecimal(Model.PendingLoanAmount).ToString("#.##")</p>}
+                                            </td>
+
+
+
+
+
+                                        }
+                                        else
+                                        {
+                                            <td> </td>
+                                            <td></td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                 
+                    </div>
+
+}
+
+

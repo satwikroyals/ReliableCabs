@@ -1,0 +1,219 @@
+﻿@model ReliableCabs.Models.SubscriptionTrans
+@{
+    ViewBag.Title = "SubscriptionTrans";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+}
+
+
+ @* <div class="row">
+				
+				 <div class="col-sm-2">
+                <div class="btn-group m-r-10">
+				<h4 class="box-title m-b-0 please-wrapper"><span>Enter Driver Name</span></h4>
+                                         	  @Html.TextBox("searchInput", null, new { id = "searchInput" }) 
+                                </div>
+                    </div>
+      </div>*@
+<div class="row">
+
+    <div class="container">
+   
+        <table style="width:100%;border-color:none">
+             <thead>
+                 <tr>     
+            <th class ="container .box .box-cell.box1"  > Enter Driver Name</th>
+            <th class ="container .box .box-cell.box2"  >Enter Terminal Details</th>
+             <th class ="container .box .box-cell.box3">Enter Mobile Number</th>        
+            @*<th style="align-content:flex-end"">Enter Mobile</th>        *@
+        </tr>
+    
+    </thead>
+    <tbody>
+      
+        <tr>
+      
+            <td>@Html.TextBox("searchInput", null, new { id = "searchInput",@class = "form-control_new" }) </td>
+            <td>@Html.TextBox("searchTerminal", null, new { id = "searchTerminal",@class = "form-control_new" })</td>
+             <td >@Html.TextBox("searchMobile", null, new { id = "searchMobile",@class = "form-control_new" })</td>
+           
+      </tr>
+         
+      
+        </tbody>
+        </table>
+ </div>
+   </div>
+
+
+
+ <div class="row" style="padding-top:2%">				
+		   <div id="body">
+
+           <div id="ProdPartials">
+
+    @Html.Partial("PartialSubscriptionTrans", Model)
+      
+    </div>
+    </div>
+    </div>
+    <!-- .row -->
+                <div class="row">
+     <div id="body1">
+  <div id="ProdPartial1">
+     @Html.Partial("PartialSubscriptionTrans1", Model)
+    </div>
+         </div>
+ </div>
+               <!-- .row -->
+                <div class="row">
+<div id="body2">
+          <div id="ProdPartials1">
+       
+      @Html.Partial("PartialSubTransHistory1", Model)
+    </div>
+    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+     
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+          
+                </div>
+                <!-- /.row -->
+  
+@*<script src="~/Content/js/jquery-2.2.0.min.js"></script>*@
+
+@section scripts
+{
+
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        document.getElementById('Pendingamtnew').value = @ViewBag.NetAmount
+        document.getElementById('body').style.display = 'none';
+        document.getElementById('body1').style.display = 'none';
+        document.getElementById('body2').style.display = 'none';
+
+        $("#searchInput").autocomplete({
+            minLength: 2,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetClients","SubscriptionTrans")',
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.FirstName, val: item.ClientId };
+                        }));
+                    },
+
+                    error: function (xhr, status, error) {
+                        alert("Error");
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#searchInput").val(i.item.label);
+                var id = i.item.val;
+                transload(id);
+            },
+        });
+
+
+
+
+
+        $("#searchTerminal").autocomplete({
+            minLength: 2,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetTerminals","SubscriptionTrans")',
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Terminal, val: item.ClientId };
+                        }));
+                    },
+
+                    error: function (xhr, status, error) {
+                        alert("Error");
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#searchTerminal").val(i.item.label);
+                var id = i.item.val;
+                transload(id);
+            },
+        });
+
+
+        $("#searchMobile").autocomplete({
+            minLength: 3,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetClientMobiles","SubscriptionTrans")',
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Mobile, val: item.ClientId };
+                        }));
+                    },
+
+                    error: function (xhr, status, error) {
+                        alert("Error");
+                    }
+                });
+            },
+              select: function (e, i) {
+                  $("#searchMobile").val(i.item.label);
+                  var id = i.item.val;
+                  transload(id);
+              },
+          });
+
+        $("#searchInput").on("keyup", function () {
+           
+            document.getElementById('searchTerminal').value = "";
+            document.getElementById('searchMobile').value = "";
+           
+        });
+
+        $("#searchTerminal").on("keyup", function () {
+
+            document.getElementById('searchInput').value = "";
+            document.getElementById('searchMobile').value = "";
+
+        });
+        $("#searchMobile").on("keyup", function () {
+
+            document.getElementById('searchTerminal').value = "";
+            document.getElementById('searchInput').value = "";
+
+        });
+
+
+        function transload(id) {
+            document.getElementById('body').style.display = 'block';
+            document.getElementById('body1').style.display = 'block';
+            document.getElementById('body2').style.display = 'block';
+            // var id = $("#ClientId option:selected").val();
+
+            //$.post("/SubscriptionTrans/SubscriptionTrans", { data: id });
+            $("#ProdPartials").load('@(Url.Action("GetTransactionDetails","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+            $("#ProdPartial1").load('@(Url.Action("GetTransactionDetails1","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+            $("#ProdPartials1").load('@(Url.Action("GetTransHistory","SubscriptionTrans",null, Request.Url.Scheme))?id=' + id)
+        }
+
+        // })
+    });
+
+</script>
+    }

@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReliablecabsModelStoreContainer" CdmEntityContainer="ReliablecabsEntities">
+    <EntitySetMapping Name="CashCollecteds">
+      <EntityTypeMapping TypeName="ReliablecabsModel.CashCollected">
+        <MappingFragment StoreEntitySet="CashCollected">
+          <ScalarProperty Name="CashAmountId" ColumnName="CashAmountId" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="ReliablecabsModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DriverLicenceNo" ColumnName="DriverLicenceNo" />
+          <ScalarProperty Name="BankDetails" ColumnName="BankDetails" />
+          <ScalarProperty Name="SimNumber" ColumnName="SimNumber" />
+          <ScalarProperty Name="NamePlateNumber" ColumnName="NamePlateNumber" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+          <ScalarProperty Name="OtherInfo" ColumnName="OtherInfo" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientReturnTrans">
+      <EntityTypeMapping TypeName="ReliablecabsModel.ClientReturnTran">
+        <MappingFragment StoreEntitySet="ClientReturnTrans">
+          <ScalarProperty Name="ClientReturnTransId" ColumnName="ClientReturnTransId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="SubTransId" ColumnName="SubTransId" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+          <ScalarProperty Name="AdvanceAdjustment" ColumnName="AdvanceAdjustment" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="ReliablecabsModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeriodTypes">
+      <EntityTypeMapping TypeName="ReliablecabsModel.PeriodType">
+        <MappingFragment StoreEntitySet="PeriodType">
+          <ScalarProperty Name="PeriodTypeId" ColumnName="PeriodTypeId" />
+          <ScalarProperty Name="PeriodType1" ColumnName="PeriodType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentHolds">
+      <EntityTypeMapping TypeName="ReliablecabsModel.RentHold">
+        <MappingFragment StoreEntitySet="RentHold">
+          <ScalarProperty Name="RentHoldID" ColumnName="RentHoldID" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="RentHoldStartdate" ColumnName="RentHoldStartdate" />
+          <ScalarProperty Name="RentHoldStopdate" ColumnName="RentHoldStopdate" />
+          <ScalarProperty Name="RentoutstandingAmt" ColumnName="RentoutstandingAmt" />
+          <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="ReliablecabsModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="Status1" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubscriptionTrans">
+      <EntityTypeMapping TypeName="ReliablecabsModel.SubscriptionTran">
+        <MappingFragment StoreEntitySet="SubscriptionTrans">
+          <ScalarProperty Name="SubTransId" ColumnName="SubTransId" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="EftposCommCharge" ColumnName="EftposCommCharge" />
+          <ScalarProperty Name="ChitsCommCharge" ColumnName="ChitsCommCharge" />
+          <ScalarProperty Name="EftposchargeAmount" ColumnName="EftposchargeAmount" />
+          <ScalarProperty Name="ChitsChargeAmount" ColumnName="ChitsChargeAmount" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddCashCollectedDetails" FunctionName="ReliablecabsModel.Store.AddCashCollectedDetails" />
+    <FunctionImportMapping FunctionImportName="AddClientDetails" FunctionName="ReliablecabsModel.Store.AddClientDetails" />
+    <FunctionImportMapping FunctionImportName="AddClientReturnTransDetails" FunctionName="ReliablecabsModel.Store.AddClientReturnTransDetails" />
+    <FunctionImportMapping FunctionImportName="AddLoginDetails" FunctionName="ReliablecabsModel.Store.AddLoginDetails" />
+    <FunctionImportMapping FunctionImportName="AddRentHoldDetails" FunctionName="ReliablecabsModel.Store.AddRentHoldDetails" />
+    <FunctionImportMapping FunctionImportName="AddSubscription" FunctionName="ReliablecabsModel.Store.AddSubscription" />
+    <FunctionImportMapping FunctionImportName="AddSubscriptionTransDetails" FunctionName="ReliablecabsModel.Store.AddSubscriptionTransDetails" />
+    <FunctionImportMapping FunctionImportName="GetCashFundDetails" FunctionName="ReliablecabsModel.Store.GetCashFundDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetCashFundDetails_Result">
+          <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+          <ScalarProperty Name="DebitAmount" ColumnName="DebitAmount" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCashReturnDetails" FunctionName="ReliablecabsModel.Store.GetCashReturnDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetCashReturnDetails_Result">
+          <ScalarProperty Name="subtransid" ColumnName="subtransid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="TotalCashAmount" ColumnName="TotalCashAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCommissionDetails" FunctionName="ReliablecabsModel.Store.GetCommissionDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetCommissionDetails_Result">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="SubscriptionStartDate" ColumnName="SubscriptionStartDate" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="EfposServiceCharge" ColumnName="EfposServiceCharge" />
+          <ScalarProperty Name="ChitsCommission" ColumnName="ChitsCommission" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getdriversdetails" FunctionName="ReliablecabsModel.Store.getdriversdetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.getdriversdetails_Result">
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DriverLicenceNo" ColumnName="DriverLicenceNo" />
+          <ScalarProperty Name="NamePlateNumber" ColumnName="NamePlateNumber" />
+          <ScalarProperty Name="SimNumber" ColumnName="SimNumber" />
+          <ScalarProperty Name="Terminal" ColumnName="Terminal" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetLoanAdjustmentDetails" FunctionName="ReliablecabsModel.Store.GetLoanAdjustmentDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetLoanAdjustmentDetails_Result">
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="LoanPaid" ColumnName="LoanPaid" />
+          <ScalarProperty Name="PendingLoanAmount" ColumnName="PendingLoanAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetRentPaymentHistory" FunctionName="ReliablecabsModel.Store.GetRentPaymentHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetRentPaymentHistory_Result">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSubscriptionDetails" FunctionName="ReliablecabsModel.Store.GetSubscriptionDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetSubscriptionDetails_Result">
+          <ScalarProperty Name="Terminal" ColumnName="Terminal" />
+          <ScalarProperty Name="SubscriptionStartDate" ColumnName="SubscriptionStartDate" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="EfposServiceCharge" ColumnName="EfposServiceCharge" />
+          <ScalarProperty Name="ChitsCommission" ColumnName="ChitsCommission" />
+          <ScalarProperty Name="SubscriptionEndDate" ColumnName="SubscriptionEndDate" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="LoanDate" ColumnName="LoanDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PeriodType" ColumnName="PeriodType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSubTransById" FunctionName="ReliablecabsModel.Store.GetSubTransById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetSubTransById_Result">
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="EftposchargeAmount" ColumnName="EftposchargeAmount" />
+          <ScalarProperty Name="EftposCommCharge" ColumnName="EftposCommCharge" />
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="ChitsCommCharge" ColumnName="ChitsCommCharge" />
+          <ScalarProperty Name="ChitsChargeAmount" ColumnName="ChitsChargeAmount" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+          <ScalarProperty Name="AdvanceAdjustment" ColumnName="AdvanceAdjustment" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTotalTransPayment" FunctionName="ReliablecabsModel.Store.GetTotalTransPayment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetTotalTransPayment_Result">
+          <ScalarProperty Name="TotEftposAmt" ColumnName="TotEftposAmt" />
+          <ScalarProperty Name="TotalEftposAmt" ColumnName="TotalEftposAmt" />
+          <ScalarProperty Name="TotChitsamt" ColumnName="TotChitsamt" />
+          <ScalarProperty Name="TotalChitsAmt" ColumnName="TotalChitsAmt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTransDetails" FunctionName="ReliablecabsModel.Store.GetTransDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetTransDetails_Result">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DriverLicenceNo" ColumnName="DriverLicenceNo" />
+          <ScalarProperty Name="SubscriptionStartDate" ColumnName="SubscriptionStartDate" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="LoanDate" ColumnName="LoanDate" />
+          <ScalarProperty Name="RentFrequency" ColumnName="RentFrequency" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="RentBalance" ColumnName="RentBalance" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptAllSubTransDetails" FunctionName="ReliablecabsModel.Store.RptAllSubTransDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.RptAllSubTransDetails_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Terminal" ColumnName="Terminal" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="SubTransId" ColumnName="SubTransId" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="EftposCommCharge" ColumnName="EftposCommCharge" />
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="ChitsCommCharge" ColumnName="ChitsCommCharge" />
+          <ScalarProperty Name="EftposchargeAmount1" ColumnName="EftposchargeAmount1" />
+          <ScalarProperty Name="ChitschargeAmount1" ColumnName="ChitschargeAmount1" />
+          <ScalarProperty Name="NetReturnAmount" ColumnName="NetReturnAmount" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+          <ScalarProperty Name="AdvanceAdjustment" ColumnName="AdvanceAdjustment" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptdashboardmonthTrans" FunctionName="ReliablecabsModel.Store.RptdashboardmonthTrans">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.RptdashboardmonthTrans_Result">
+          <ScalarProperty Name="activeDrivers" ColumnName="activeDrivers" />
+          <ScalarProperty Name="totalEftposAmt" ColumnName="totalEftposAmt" />
+          <ScalarProperty Name="totalChitsAmt" ColumnName="totalChitsAmt" />
+          <ScalarProperty Name="totaleftposcommAmount" ColumnName="totaleftposcommAmount" />
+          <ScalarProperty Name="totalChitscommAmount" ColumnName="totalChitscommAmount" />
+          <ScalarProperty Name="totalRentAmount" ColumnName="totalRentAmount" />
+          <ScalarProperty Name="totalcashamt" ColumnName="totalcashamt" />
+          <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+          <ScalarProperty Name="totalChequeamt" ColumnName="totalChequeamt" />
+          <ScalarProperty Name="totalCompanyAdvance" ColumnName="totalCompanyAdvance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptdashboardTrans" FunctionName="ReliablecabsModel.Store.RptdashboardTrans">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.RptdashboardTrans_Result">
+          <ScalarProperty Name="totalEftposAmt" ColumnName="totalEftposAmt" />
+          <ScalarProperty Name="totalChitsAmt" ColumnName="totalChitsAmt" />
+          <ScalarProperty Name="totaleftposcommAmount" ColumnName="totaleftposcommAmount" />
+          <ScalarProperty Name="totalChitscommAmount" ColumnName="totalChitscommAmount" />
+          <ScalarProperty Name="totalRentAmount" ColumnName="totalRentAmount" />
+          <ScalarProperty Name="totalcashamt" ColumnName="totalcashamt" />
+          <ScalarProperty Name="totalChequeamt" ColumnName="totalChequeamt" />
+          <ScalarProperty Name="totalCompanyAdvance" ColumnName="totalCompanyAdvance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptListDriverDetails" FunctionName="ReliablecabsModel.Store.RptListDriverDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.RptListDriverDetails_Result">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DriverLicenceNo" ColumnName="DriverLicenceNo" />
+          <ScalarProperty Name="BankDetails" ColumnName="BankDetails" />
+          <ScalarProperty Name="SimNumber" ColumnName="SimNumber" />
+          <ScalarProperty Name="NamePlateNumber" ColumnName="NamePlateNumber" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSubTransDetails" FunctionName="ReliablecabsModel.Store.RptSubTransDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.RptSubTransDetails_Result">
+          <ScalarProperty Name="terminal" ColumnName="terminal" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="EftposCommCharge" ColumnName="EftposCommCharge" />
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="ChitsCommCharge" ColumnName="ChitsCommCharge" />
+          <ScalarProperty Name="EftposchargeAmount" ColumnName="EftposchargeAmount" />
+          <ScalarProperty Name="ChitsChargeAmount" ColumnName="ChitsChargeAmount" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_TotalRentAmount" FunctionName="ReliablecabsModel.Store.Sp_TotalRentAmount" />
+    <FunctionImportMapping FunctionImportName="UpdateEftopsDetails" FunctionName="ReliablecabsModel.Store.UpdateEftopsDetails" />
+    <FunctionImportMapping FunctionImportName="UpdateTransDetails" FunctionName="ReliablecabsModel.Store.UpdateTransDetails" />
+    <FunctionImportMapping FunctionImportName="UpdateSubscriptionDetails" FunctionName="ReliablecabsModel.Store.UpdateSubscriptionDetails" />
+    <FunctionImportMapping FunctionImportName="UpdateSubscription" FunctionName="ReliablecabsModel.Store.UpdateSubscription" />
+    <EntitySetMapping Name="LoanTrans">
+      <EntityTypeMapping TypeName="ReliablecabsModel.LoanTran">
+        <MappingFragment StoreEntitySet="LoanTrans">
+          <ScalarProperty Name="RentRemarks" ColumnName="RentRemarks" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+          <ScalarProperty Name="LoanOnlineAmount" ColumnName="LoanOnlineAmount" />
+          <ScalarProperty Name="LoanChequeNumber" ColumnName="LoanChequeNumber" />
+          <ScalarProperty Name="LoanChequeAmount" ColumnName="LoanChequeAmount" />
+          <ScalarProperty Name="LoanCashAmount" ColumnName="LoanCashAmount" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="SubTransId" ColumnName="SubTransId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="LoanTransId" ColumnName="LoanTransId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetTotalTransPayment1" FunctionName="ReliablecabsModel.Store.GetTotalTransPayment1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetTotalTransPayment1_Result">
+          <ScalarProperty Name="TotalRentAmount" ColumnName="TotalRentAmount" />
+          <ScalarProperty Name="TotEftposAmt" ColumnName="TotEftposAmt" />
+          <ScalarProperty Name="TotalEftposAmt" ColumnName="TotalEftposAmt" />
+          <ScalarProperty Name="TotChitsamt" ColumnName="TotChitsamt" />
+          <ScalarProperty Name="TotalChitsAmt" ColumnName="TotalChitsAmt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddLoanTransDetails" FunctionName="ReliablecabsModel.Store.AddLoanTransDetails" />
+    <FunctionImportMapping FunctionImportName="GetChitsPaymentHistory1" FunctionName="ReliablecabsModel.Store.GetChitsPaymentHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetChitsPaymentHistory1_Result">
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="C__Service_Charge" ColumnName="% Service Charge" />
+          <ScalarProperty Name="ChargeAmount" ColumnName="ChargeAmount" />
+          <ScalarProperty Name="Amount_Recieved" ColumnName="Amount Recieved" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEftposPaymentHistory1" FunctionName="ReliablecabsModel.Store.GetEftposPaymentHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetEftposPaymentHistory1_Result">
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="C__Service_Charge" ColumnName="% Service Charge" />
+          <ScalarProperty Name="ChargeAmount" ColumnName="ChargeAmount" />
+          <ScalarProperty Name="Amount_Recieved" ColumnName="Amount Recieved" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPaymentHistory1" FunctionName="ReliablecabsModel.Store.GetPaymentHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetPaymentHistory1_Result">
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="C_ChitsCharge" ColumnName="%ChitsCharge" />
+          <ScalarProperty Name="ChitsAmountRecieved" ColumnName="ChitsAmountRecieved" />
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="C_EftposCharge" ColumnName="%EftposCharge" />
+          <ScalarProperty Name="EftposAmountRecieved" ColumnName="EftposAmountRecieved" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+          <ScalarProperty Name="LoanRepayment" ColumnName="LoanRepayment" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPaymentsHistory" FunctionName="ReliablecabsModel.Store.GetPaymentsHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetPaymentsHistory_Result">
+          <ScalarProperty Name="SubTransId" ColumnName="SubTransId" />
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="C_ChitsCharge" ColumnName="%ChitsCharge" />
+          <ScalarProperty Name="ChitsAmountRecieved" ColumnName="ChitsAmountRecieved" />
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="C_EftposCharge" ColumnName="%EftposCharge" />
+          <ScalarProperty Name="EftposAmountRecieved" ColumnName="EftposAmountRecieved" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+          <ScalarProperty Name="LoanRepayment" ColumnName="LoanRepayment" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+          <ScalarProperty Name="LoanCashAmount" ColumnName="LoanCashAmount" />
+          <ScalarProperty Name="LoanChequeAmount" ColumnName="LoanChequeAmount" />
+          <ScalarProperty Name="LoanChequeNumber" ColumnName="LoanChequeNumber" />
+          <ScalarProperty Name="LoanOnlineAmount" ColumnName="LoanOnlineAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSubTransPaymentDetails" FunctionName="ReliablecabsModel.Store.GetSubTransPaymentDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.GetSubTransPaymentDetails_Result">
+          <ScalarProperty Name="SubTransId" ColumnName="SubTransId" />
+          <ScalarProperty Name="ChitsAmount" ColumnName="ChitsAmount" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="C_ChitsCharge" ColumnName="%ChitsCharge" />
+          <ScalarProperty Name="ChitsAmountRecieved" ColumnName="ChitsAmountRecieved" />
+          <ScalarProperty Name="EfposAmount" ColumnName="EfposAmount" />
+          <ScalarProperty Name="C_EftposCharge" ColumnName="%EftposCharge" />
+          <ScalarProperty Name="EftposAmountRecieved" ColumnName="EftposAmountRecieved" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+          <ScalarProperty Name="LoanRepayment" ColumnName="LoanRepayment" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+          <ScalarProperty Name="LoanCashAmount" ColumnName="LoanCashAmount" />
+          <ScalarProperty Name="LoanChequeAmount" ColumnName="LoanChequeAmount" />
+          <ScalarProperty Name="LoanChequeNumber" ColumnName="LoanChequeNumber" />
+          <ScalarProperty Name="LoanOnlineAmount" ColumnName="LoanOnlineAmount" />
+          <ScalarProperty Name="EfposServiceCharge" ColumnName="EfposServiceCharge" />
+          <ScalarProperty Name="ChitsCommission" ColumnName="ChitsCommission" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spdeleteloan" FunctionName="ReliablecabsModel.Store.spdeleteloan">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReliablecabsModel.spdeleteloan_Result">
+          <ScalarProperty Name="ClientReturnTransId" ColumnName="ClientReturnTransId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="SubTransId" ColumnName="SubTransId" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="OnlineAmount" ColumnName="OnlineAmount" />
+          <ScalarProperty Name="AdvanceAdjustment" ColumnName="AdvanceAdjustment" />
+          <ScalarProperty Name="LoanToDriver" ColumnName="LoanToDriver" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Subscriptions">
+      <EntityTypeMapping TypeName="ReliablecabsModel.Subscription">
+        <MappingFragment StoreEntitySet="Subscription">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LoanDate" ColumnName="LoanDate" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="ChitsCommission" ColumnName="ChitsCommission" />
+          <ScalarProperty Name="EfposServiceCharge" ColumnName="EfposServiceCharge" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="SubscriptionEndDate" ColumnName="SubscriptionEndDate" />
+          <ScalarProperty Name="PeriodTypeId" ColumnName="PeriodTypeId" />
+          <ScalarProperty Name="RentAmount" ColumnName="RentAmount" />
+          <ScalarProperty Name="SubscriptionStartDate" ColumnName="SubscriptionStartDate" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="Terminal" ColumnName="Terminal" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

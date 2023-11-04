@@ -1,0 +1,174 @@
+﻿@model ReliableCabs.Models.CashCollectedModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+}
+
+<div class="container">
+    <div class ="container .box .box-cell.box2" style="padding-left:20%">
+        <table style="width:100%;border-color:none">
+             <thead>
+                 <tr>     
+            <th style="color:Red;align-content:flex-end">Credit Amount</th>
+            <th style="color:Red">Debit Amount</th>
+            <th style="color:Red">Net Amount</th>        
+        </tr>
+    
+    </thead>
+    <tbody>
+          @if (Model.ListFundsDetails.Count > 0)
+             {
+        <tr>
+      
+            <td>@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().CreditAmount).ToString("0.00")</td>
+            <td>@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().DebitAmount).ToString("0.00")</td>
+             <td id="NetAmount">@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().NetAmount).ToString("0.00")</td>
+           
+      </tr>
+             }  
+        else
+        {
+               <tr>
+      
+            <td>0.00</td>
+            <td>0.00</td>
+             <td id="NetAmount">0.00</td>
+           
+      </tr>
+          }
+       
+      
+        </tbody>
+        </table>
+ </div>
+   </div>
+
+<div class="container" style="padding-top:3%" >
+
+    <div class ="container .box .box-cell.box1" style="padding-left:20%">
+    @*    <table>
+            <tr>
+            <td style="width:100%">
+                <h3 style="color:darkblue"><b>CREDIT TRANSACTION DETIALS</b></h3>
+            </td>
+                 <td style="padding-right:3%">
+                 <input type="text" id="txtcash" class="form-control" placeholder="Enter Amount" style="width:180px"/> </td>
+                <td> 
+            <td style="padding-right:3%;width:60%">
+               
+                 <input type="text" id="txtRefNo" class="form-control" placeholder="Enter Ref" style="width:180px"/> </td>
+                
+                <td>
+
+    <button type="button" id="btnadd" class="btn btn-block btn-danger" onclick="addcash()" >ADD CASH</button> 
+                
+
+            </td>
+             </tr>
+        </table>*@
+         <table>
+            <tr>
+            <td style="width:100%">
+                <h3 style="color:darkblue"><b>CREDIT TRANSACTION DETIALS</b></h3>
+            </td>
+                </tr>
+             <tr>
+                 <td style="padding-left:22%">
+                 <input type="text" id="txtcash" class="form-control" placeholder="Enter Amount" style="width:180px"/> </td>
+                <td> 
+                 <td style="padding-right:3%;width:60%">
+                 <input type="text" id="txtRefNo" class="form-control" placeholder="Enter RefNo" style="width:180px"/> </td>
+                <td> 
+            <td style="padding-right:3%;width:60%">
+                <input type="text" id="date" name="date" class="form-control mydatepicker" style="width:180px"/> @* <span class="input-group-addon"><i class="icon-calender"></i></span> *@
+               
+                
+                <td>
+
+    <button type="button" id="btnadd" class="btn btn-block btn-danger" onclick="addcash()" >ADD CASH</button> 
+                
+
+            </td>
+             </tr>
+        </table>
+ </div>
+  
+  <div class="row" style="padding-top:2%">				
+		   <div id="body">   
+ <div id="ProdPartials">
+
+  @*@Html.Partial("PartialFunds", Model)*@
+      
+  </div>
+ </div>
+ </div>
+</div>
+
+    <script>
+        $(document).ready(function () {
+            document.getElementById('Pendingamtnew').value = $("#NetAmount").text();
+            var date = new Date();
+            document.getElementById('date').value = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+        
+
+            $.get("/Funds/Index1", function (data) {
+                $('#ProdPartials').load('PartialFunds');
+            });
+
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'dd/mm/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+                defaultDate: new Date()
+            });
+            $("#datepicker").datepicker('setDate', new Date());
+
+       
+        $("#txtcash").on("keyup", function () {
+
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+        });
+
+
+        function addcash() {
+
+            var CashAmount = document.getElementById('txtcash').value;
+            var RefNo = document.getElementById('txtRefNo').value;
+
+            if (CashAmount == '') {
+                alert("Please enter amount");
+            }
+            if (RefNo == '') {
+                alert("Please enter RefNo");
+            }
+            else {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("InsertCash", "Funds")',
+                    data:
+               {
+                   CashAmount: CashAmount,
+                   RefNo : RefNo
+
+               },
+                    success: function (r) {
+                        alert("Successfully submitted");
+                        window.location.href = "../Funds/Index"
+                     
+                    }
+                });
+            }
+        }
+        });
+</script>
+    

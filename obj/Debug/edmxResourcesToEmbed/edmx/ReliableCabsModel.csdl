@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReliablecabsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CashCollected">
+    <Key>
+      <PropertyRef Name="CashAmountId" />
+    </Key>
+    <Property Name="CashAmountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CashAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DriverLicenceNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BankDetails" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SimNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NamePlateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhysicalAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="OtherInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ClientReturnTran">
+    <Key>
+      <PropertyRef Name="ClientReturnTransId" />
+    </Key>
+    <Property Name="ClientReturnTransId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="SubTransId" Type="Int32" />
+    <Property Name="TransDate" Type="DateTime" Precision="3" />
+    <Property Name="CashAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ChequeAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ChequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OnlineAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="AdvanceAdjustment" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LoanToDriver" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PeriodType">
+    <Key>
+      <PropertyRef Name="PeriodTypeId" />
+    </Key>
+    <Property Name="PeriodTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PeriodType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RentHold">
+    <Key>
+      <PropertyRef Name="RentHoldID" />
+    </Key>
+    <Property Name="RentHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="RentHoldStartdate" Type="DateTime" Precision="0" />
+    <Property Name="RentHoldStopdate" Type="DateTime" Precision="0" />
+    <Property Name="RentoutstandingAmt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Createddate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SubscriptionTran">
+    <Key>
+      <PropertyRef Name="SubTransId" />
+    </Key>
+    <Property Name="SubTransId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubscriptionId" Type="Int32" Nullable="false" />
+    <Property Name="EfposAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ChitsAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RentAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TransDate" Type="DateTime" Precision="3" />
+    <Property Name="EftposCommCharge" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ChitsCommCharge" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="EftposchargeAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ChitsChargeAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Comments" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="ReliablecabsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CashCollecteds" EntityType="Self.CashCollected" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="ClientReturnTrans" EntityType="Self.ClientReturnTran" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="PeriodTypes" EntityType="Self.PeriodType" />
+    <EntitySet Name="RentHolds" EntityType="Self.RentHold" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="SubscriptionTrans" EntityType="Self.SubscriptionTran" />
+    <FunctionImport Name="AddCashCollectedDetails" ReturnType="Collection(Decimal)">
+      <Parameter Name="Cashamount" Mode="In" Type="Decimal" />
+      <Parameter Name="RefNo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddClientDetails" ReturnType="Collection(Decimal)">
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="DriverLicenceNo" Mode="In" Type="String" />
+      <Parameter Name="BankDetails" Mode="In" Type="String" />
+      <Parameter Name="SimNumber" Mode="In" Type="String" />
+      <Parameter Name="NamePlateNumber" Mode="In" Type="String" />
+      <Parameter Name="PhysicalAddress" Mode="In" Type="String" />
+      <Parameter Name="OtherInfo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddClientReturnTransDetails" ReturnType="Collection(Decimal)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="SubTransId" Mode="In" Type="Int32" />
+      <Parameter Name="CashAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ChequeAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ChequeNumber" Mode="In" Type="String" />
+      <Parameter Name="OnlineAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="AdvanceAdjustment" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanToDriver" Mode="In" Type="Decimal" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddLoginDetails" ReturnType="Collection(Decimal)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddRentHoldDetails" ReturnType="Collection(Decimal)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddSubscription" ReturnType="Collection(Decimal)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="Terminal" Mode="In" Type="String" />
+      <Parameter Name="StatusId" Mode="In" Type="Int32" />
+      <Parameter Name="SubscriptionStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="RentAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="PeriodTypeId" Mode="In" Type="Int32" />
+      <Parameter Name="SubscriptionEndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Notes" Mode="In" Type="String" />
+      <Parameter Name="EfposServiceCharge" Mode="In" Type="Decimal" />
+      <Parameter Name="ChitsCommission" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="AddSubscriptionTransDetails" ReturnType="Collection(Decimal)">
+      <Parameter Name="SubscriptionId" Mode="In" Type="Int32" />
+      <Parameter Name="EfposAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ChitsAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="RentAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="EftposCommCharge" Mode="In" Type="Decimal" />
+      <Parameter Name="ChitsCommCharge" Mode="In" Type="Decimal" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetCashFundDetails" ReturnType="Collection(ReliablecabsModel.GetCashFundDetails_Result)" />
+    <FunctionImport Name="GetCashReturnDetails" ReturnType="Collection(ReliablecabsModel.GetCashReturnDetails_Result)" />
+    <FunctionImport Name="GetCashtotal" ReturnType="Collection(Decimal)" />
+    <FunctionImport Name="GetChitsPaymentHistory">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetCommissionDetails" ReturnType="Collection(ReliablecabsModel.GetCommissionDetails_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetDriverDetailsbyStatus" ReturnType="Collection(ReliablecabsModel.GetDriverDetailsbyStatus_Result)">
+      <Parameter Name="StatusId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getdriversdetails" ReturnType="Collection(ReliablecabsModel.getdriversdetails_Result)" />
+    <FunctionImport Name="GetEftposPaymentHistory">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetLoanAdjustmentDetails" ReturnType="Collection(ReliablecabsModel.GetLoanAdjustmentDetails_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetRentPaymentHistory" ReturnType="Collection(ReliablecabsModel.GetRentPaymentHistory_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSubscriptionDetails" ReturnType="Collection(ReliablecabsModel.GetSubscriptionDetails_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSubTransById" ReturnType="Collection(ReliablecabsModel.GetSubTransById_Result)">
+      <Parameter Name="SubTransId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetTotalTransPayment" ReturnType="Collection(ReliablecabsModel.GetTotalTransPayment_Result)">
+      <Parameter Name="SubscriptionId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetTransDetails" ReturnType="Collection(ReliablecabsModel.GetTransDetails_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RptAllSubTransDetails" ReturnType="Collection(ReliablecabsModel.RptAllSubTransDetails_Result)" />
+    <FunctionImport Name="RptdashboardmonthTrans" ReturnType="Collection(ReliablecabsModel.RptdashboardmonthTrans_Result)" />
+    <FunctionImport Name="RptdashboardTrans" ReturnType="Collection(ReliablecabsModel.RptdashboardTrans_Result)" />
+    <FunctionImport Name="RptListDriverDetails" ReturnType="Collection(ReliablecabsModel.RptListDriverDetails_Result)">
+      <Parameter Name="StatusID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RptSubTransDetails" ReturnType="Collection(ReliablecabsModel.RptSubTransDetails_Result)">
+      <Parameter Name="clientId" Mode="In" Type="Int32" />
+      <Parameter Name="startdate" Mode="In" Type="DateTime" />
+      <Parameter Name="enddate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_TotalRentAmount">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateEftopsDetails">
+      <Parameter Name="SubTransId" Mode="In" Type="Int32" />
+      <Parameter Name="EfposAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ChitsAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTransDetails">
+      <Parameter Name="SubTransId" Mode="In" Type="Int32" />
+      <Parameter Name="EfposAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ChitsAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="CashAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ChequeAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ChequeNumber" Mode="In" Type="String" />
+      <Parameter Name="RentAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="OnlineAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="AdvanceAdjustment" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanToDriver" Mode="In" Type="Decimal" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateSubscriptionDetails">
+      <Parameter Name="SubscriptionId" Mode="In" Type="Int32" />
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="Terminal" Mode="In" Type="String" />
+      <Parameter Name="StatusId" Mode="In" Type="Int32" />
+      <Parameter Name="SubscriptionStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="RentAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="PeriodTypeId" Mode="In" Type="Int32" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="EfposServiceCharge" Mode="In" Type="Decimal" />
+      <Parameter Name="ChitsCommission" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateSubscription">
+      <Parameter Name="SubscriptionId" Mode="In" Type="Int32" />
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="Terminal" Mode="In" Type="String" />
+      <Parameter Name="StatusId" Mode="In" Type="Int32" />
+      <Parameter Name="SubscriptionStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="RentAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="PeriodTypeId" Mode="In" Type="Int32" />
+      <Parameter Name="SubscriptionEndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="EfposServiceCharge" Mode="In" Type="Decimal" />
+      <Parameter Name="ChitsCommission" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="LoanTrans" EntityType="ReliablecabsModel.LoanTran" />
+    <FunctionImport Name="GetTotalTransPayment1" ReturnType="Collection(ReliablecabsModel.GetTotalTransPayment1_Result)">
+      <Parameter Name="SubscriptionId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddLoanTransDetails" ReturnType="Collection(Decimal)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="SubTransId" Mode="In" Type="Int32" />
+      <Parameter Name="LoanCashAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanChequeAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanChequeNumber" Mode="In" Type="String" />
+      <Parameter Name="LoanOnlineAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanToDriver" Mode="In" Type="Decimal" />
+      <Parameter Name="RentRemarks" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetChitsPaymentHistory1" ReturnType="Collection(ReliablecabsModel.GetChitsPaymentHistory1_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetEftposPaymentHistory1" ReturnType="Collection(ReliablecabsModel.GetEftposPaymentHistory1_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPaymentHistory">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPaymentHistory1" ReturnType="Collection(ReliablecabsModel.GetPaymentHistory1_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPaymentsHistory" ReturnType="Collection(ReliablecabsModel.GetPaymentsHistory_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSubTransPaymentDetails" ReturnType="Collection(ReliablecabsModel.GetSubTransPaymentDetails_Result)">
+      <Parameter Name="SubTransId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spdeleteloan" ReturnType="Collection(ReliablecabsModel.spdeleteloan_Result)">
+      <Parameter Name="clientid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Subscriptions" EntityType="ReliablecabsModel.Subscription" />
+  </EntityContainer>
+  <ComplexType Name="GetCashFundDetails_Result">
+    <Property Type="Decimal" Name="CreditAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="DebitAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="NetAmount" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="GetCashReturnDetails_Result">
+    <Property Type="Int32" Name="subtransid" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="141" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="TotalCashAmount" Nullable="true" Precision="18" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="GetCommissionDetails_Result">
+    <Property Type="Int32" Name="ClientId" Nullable="false" />
+    <Property Type="DateTime" Name="SubscriptionStartDate" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="EfposServiceCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsCommission" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="TransDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetDriverDetailsbyStatus_Result">
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DriverLicenceNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="NamePlateNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SimNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Terminal" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getdriversdetails_Result">
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="DriverLicenceNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="NamePlateNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SimNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Terminal" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetLoanAdjustmentDetails_Result">
+    <Property Type="Decimal" Name="LoanAmount" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="LoanPaid" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="PendingLoanAmount" Nullable="true" Precision="24" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="GetRentPaymentHistory_Result">
+    <Property Type="Int32" Name="ClientId" Nullable="false" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="String" Name="Comments" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="GetSubscriptionDetails_Result">
+    <Property Type="String" Name="Terminal" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="SubscriptionStartDate" Nullable="true" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Notes" Nullable="true" />
+    <Property Type="Decimal" Name="EfposServiceCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsCommission" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="SubscriptionEndDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="LoanAmount" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="LoanDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="PeriodType" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="GetSubTransById_Result">
+    <Property Type="Decimal" Name="EfposAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="EftposchargeAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="EftposCommCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChitsCommCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsChargeAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="TransDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="ChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="OnlineAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="AdvanceAdjustment" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanToDriver" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="GetTotalTransPayment_Result">
+    <Property Type="Decimal" Name="TotEftposAmt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="TotalEftposAmt" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="TotChitsamt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="TotalChitsAmt" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="GetTransDetails_Result">
+    <Property Type="Int32" Name="ClientId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="141" />
+    <Property Type="String" Name="DriverLicenceNo" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="SubscriptionStartDate" Nullable="true" />
+    <Property Type="Decimal" Name="LoanAmount" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="LoanDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="RentFrequency" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="RentBalance" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="TransDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="RptAllSubTransDetails_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="141" />
+    <Property Type="String" Name="Terminal" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ClientId" Nullable="false" />
+    <Property Type="Int32" Name="SubTransId" Nullable="false" />
+    <Property Type="DateTime" Name="TransDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="EfposAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="EftposCommCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChitsCommCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="EftposchargeAmount1" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="ChitschargeAmount1" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="NetReturnAmount" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="OnlineAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="AdvanceAdjustment" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanToDriver" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="RptdashboardmonthTrans_Result">
+    <Property Type="Int32" Name="activeDrivers" Nullable="true" />
+    <Property Type="Decimal" Name="totalEftposAmt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalChitsAmt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totaleftposcommAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalChitscommAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalRentAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalcashamt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="CreditAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalChequeamt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalCompanyAdvance" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="RptdashboardTrans_Result">
+    <Property Type="Decimal" Name="totalEftposAmt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalChitsAmt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totaleftposcommAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalChitscommAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalRentAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalcashamt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalChequeamt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="totalCompanyAdvance" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="RptListDriverDetails_Result">
+    <Property Type="Int32" Name="ClientId" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="70" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="DriverLicenceNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="BankDetails" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="SimNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NamePlateNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PhysicalAddress" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="RptSubTransDetails_Result">
+    <Property Type="String" Name="terminal" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="TransDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="EfposAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="EftposCommCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChitsCommCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="EftposchargeAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChitsChargeAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="OnlineAmount" Nullable="true" Precision="19" />
+  </ComplexType>
+  <EntityType Name="LoanTran">
+    <Key>
+      <PropertyRef Name="LoanTransId" />
+    </Key>
+    <Property Name="LoanTransId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="SubTransId" Type="Int32" />
+    <Property Name="TransDate" Type="DateTime" Precision="3" />
+    <Property Name="LoanCashAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LoanChequeAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LoanChequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LoanOnlineAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LoanToDriver" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RentRemarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetTotalTransPayment1_Result">
+    <Property Type="Decimal" Name="TotalRentAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="TotEftposAmt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="TotalEftposAmt" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="TotChitsamt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="TotalChitsAmt" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="GetChitsPaymentHistory1_Result">
+    <Property Type="Decimal" Name="ChitsAmount" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="SubscriptionId" Nullable="false" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Decimal" Name="C__Service_Charge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChargeAmount" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="Amount_Recieved" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="GetEftposPaymentHistory1_Result">
+    <Property Type="Decimal" Name="EfposAmount" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="SubscriptionId" Nullable="false" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Decimal" Name="C__Service_Charge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChargeAmount" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="Amount_Recieved" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="GetPaymentHistory1_Result">
+    <Property Type="Decimal" Name="ChitsAmount" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="SubscriptionId" Nullable="false" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Decimal" Name="C_ChitsCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsAmountRecieved" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="EfposAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="C_EftposCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="EftposAmountRecieved" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="LoanToDriver" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanRepayment" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Comments" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="ChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="OnlineAmount" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="GetPaymentsHistory_Result">
+    <Property Type="Int32" Name="SubTransId" Nullable="false" />
+    <Property Type="Decimal" Name="ChitsAmount" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="SubscriptionId" Nullable="false" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Decimal" Name="C_ChitsCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsAmountRecieved" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="EfposAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="C_EftposCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="EftposAmountRecieved" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="LoanToDriver" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanRepayment" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Comments" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="ChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="OnlineAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanCashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="LoanChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="LoanOnlineAmount" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="GetSubTransPaymentDetails_Result">
+    <Property Type="Int32" Name="SubTransId" Nullable="false" />
+    <Property Type="Decimal" Name="ChitsAmount" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="SubscriptionId" Nullable="false" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Decimal" Name="C_ChitsCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsAmountRecieved" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="EfposAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="C_EftposCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="EftposAmountRecieved" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="LoanToDriver" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanRepayment" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="RentAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Comments" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="ChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="OnlineAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanCashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="LoanChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="LoanOnlineAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="EfposServiceCharge" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ChitsCommission" Nullable="true" Precision="18" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="spdeleteloan_Result">
+    <Property Type="Int32" Name="ClientReturnTransId" Nullable="false" />
+    <Property Type="Int32" Name="ClientId" Nullable="false" />
+    <Property Type="Int32" Name="SubTransId" Nullable="true" />
+    <Property Type="DateTime" Name="TransDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="CashAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="ChequeAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="ChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="OnlineAmount" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="AdvanceAdjustment" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="LoanToDriver" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <EntityType Name="Subscription">
+    <Key>
+      <PropertyRef Name="SubscriptionId" />
+    </Key>
+    <Property Name="SubscriptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="Terminal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StatusId" Type="Int32" />
+    <Property Name="SubscriptionStartDate" Type="DateTime" Precision="3" />
+    <Property Name="RentAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PeriodTypeId" Type="Int32" />
+    <Property Name="SubscriptionEndDate" Type="DateTime" Precision="3" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EfposServiceCharge" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ChitsCommission" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="LoanAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="LoanDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

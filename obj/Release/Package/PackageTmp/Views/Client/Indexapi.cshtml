@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewBag.Title = "Index1";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+}
+
+
+<div class="row">
+
+
+    <div id="body">
+        <a href='../Client/InsertClient' class="btn btn-info "> Add Driver </a>
+        <div id="ProdPartials">
+
+
+            <div class="col-sm-10" style=" padding-left:10%">
+                <div class="white-box">
+
+
+                    <h2 style="width:100%;align-items:center;font-size:x-large"> <strong><Bold>DRIVER DETAILS</Bold></strong></h2>
+
+                    <table id="tblCustomers" class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                        @*class="table"cellpadding="0" cellspacing="0">*@
+
+                        <tr>
+                            <th style="width:80px;background-color:lightgray">Driver Id</th>
+                            <th style="width:100px;background-color:lightgray">FirstName</th>
+                            <th style="width:100px;background-color:lightgray" ">LastName</th>
+                            <th style="width:100px;background-color:lightgray" ">Mobile</th>
+                            <th style="width:100px;background-color:lightgray" ">Email</th>
+                            <th style="width:100px;background-color:lightgray" ">Licence No</th>
+                            <th style="width:100px;background-color:lightgray" ">PhysicalAddress</th>
+                            <th style="width:100px;background-color:lightgray"></th>
+                        </tr>
+                        <tbody id="apibody">
+
+                        </tbody>
+                           
+                       
+                       
+                           
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.ajax({
+                type: "GET",
+            url: "../api/a/MobileCheckAvailability",
+               // data: '{name: "' + txtName.val() + '", country: "' + txtCountry.val() + '" }',
+                contentType: "application/json; charset=utf-8",
+               dataType: "json",
+            success: function (r) {
+                console.log(r);
+
+                   }
+                  
+               
+            });
+
+    });
+
+        $(function () {
+            //Remove the dummy row if data present.
+            if ($("#tblCustomers tr").length > 2) {
+                $("#tblCustomers tr:eq(1)").remove();
+            } else {
+                var row = $("#tblCustomers tr:last-child");
+                row.find(".Edit").hide();
+                row.find(".Delete").hide();
+                row.find("span").html('&nbsp;');
+            }
+        });
+
+        function AppendRow(row, customerId, name, country) {
+            //Bind CustomerId.
+            $(".ClientId", row).find("span").html(ClientId);
+
+
+            //Bind FirstName.
+            $(".FirstName", row).find("span").html(FirstName);
+            $(".FirstName", row).find("input").val(FirstName);
+
+            //Bind LastName.
+            $(".LastName", row).find("span").html(LastName);
+            $(".LastName", row).find("input").val(LastName);
+
+
+            //Bind Mobile.
+            $(".Mobile", row).find("span").html(Mobile);
+            $(".Mobile", row).find("input").val(Mobile);
+
+            //Bind Email.
+            $(".Email", row).find("span").html(Email);
+            $(".Email", row).find("input").val(Email);
+
+            //Bind DriverLicenceNo.
+            $(".DriverLicenceNo", row).find("span").html(DriverLicenceNo);
+            $(".DriverLicenceNo", row).find("input").val(DriverLicenceNo);
+
+            //Bind PhysicalAddress.
+            $(".PhysicalAddress", row).find("span").html(PhysicalAddress);
+            $(".PhysicalAddress", row).find("input").val(PhysicalAddress);
+
+
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            $("#tblCustomers").append(row);
+        };
+
+        //Add event handler.
+        //$("body").on("click", "#btnAdd", function () {
+        //    var txtName = $("#txtName");
+        //    var txtCountry = $("#txtCountry");
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Home/InsertCustomer",
+        //        data: '{name: "' + txtName.val() + '", country: "' + txtCountry.val() + '" }',
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json",
+        //        success: function (r) {
+        //            var row = $("#tblCustomers tr:last-child");
+        //            if ($("#tblCustomers tr:last-child span").eq(0).html() != "&nbsp;") {
+        //                row = row.clone();
+        //            }
+        //            AppendRow(row, r.CustomerId, r.Name, r.Country);
+        //            txtName.val("");
+        //            txtCountry.val("");
+        //        }
+        //    });
+        //});
+
+        //Edit event handler.
+        $("body").on("click", "#tblCustomers .Edit", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    $(this).find("input").show();
+                    $(this).find("span").hide();
+                }
+            });
+            row.find(".Update").show();
+            row.find(".Cancel").show();
+            row.find(".Delete").hide();
+            $(this).hide();
+        });
+
+        //Update event handler.
+        $("body").on("click", "#tblCustomers .Update", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    var span = $(this).find("span");
+                    var input = $(this).find("input");
+                    span.html(input.val());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            row.find(".Cancel").hide();
+            $(this).hide();
+
+            var customer = {};
+            customer.ClientId = row.find(".ClientId").find("span").html();
+            customer.FirstName = row.find(".FirstName").find("span").html();
+            customer.LastName = row.find(".LastName").find("span").html();
+            customer.Mobile = row.find(".Mobile").find("span").html();
+            customer.Email = row.find(".Email").find("span").html();
+            customer.DriverLicenceNo = row.find(".DriverLicenceNo").find("span").html();
+            customer.PhysicalAddress = row.find(".PhysicalAddress").find("span").html();
+            $.ajax({
+                type: "POST",
+                url: "/Client/UpdateCustomer",
+                data: '{customer:' + JSON.stringify(customer) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("Updated successfully");
+                }
+            });
+        });
+
+        //Cancel event handler.
+        $("body").on("click", "#tblCustomers .Cancel", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    var span = $(this).find("span");
+                    var input = $(this).find("input");
+                    input.val(span.html());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            row.find(".Update").hide();
+            $(this).hide();
+        });
+
+        //Delete event handler.
+        $("body").on("click", "#tblCustomers .Delete", function () {
+            if (confirm("Do you want to delete this row?")) {
+                var row = $(this).closest("tr");
+                var customerId = row.find("span").html();
+                $.ajax({
+                    type: "POST",
+                    url: "/Client/DeleteCustomer",
+                    data: '{customerId: ' + customerId + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert("Deleted Successfully");
+                        $("#ProdPartials").load(location.href + " #ProdPartials");
+                        row.remove();
+                        if ($("#tblCustomers tr").length > 2) {
+                            row.remove();
+
+
+                        } else {
+                            row.find(".Edit").hide();
+                            row.find(".Delete").hide();
+                            row.find("span").html('&nbsp;');
+                        }
+                    }
+                });
+            }
+        });
+</script>

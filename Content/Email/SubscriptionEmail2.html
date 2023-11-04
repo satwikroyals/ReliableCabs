@@ -1,0 +1,175 @@
+﻿
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<title>Subscription Transaction </title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #Table2 {
+            width: 500px;
+            margin-left: 0px;
+        }
+        .auto-style1 {
+            width: 50%;
+        }
+        .auto-style2 {
+            width: 50%;
+            height: 19px;
+        }
+        .auto-style3 {
+            height: 19px;
+        }
+           .auto-style18 {
+            width: 26%;
+        }
+        .auto-style4 {
+            width: 35%;
+            height: 19px;
+        }
+        .auto-style5 {
+            width: 35%;
+        }
+        .auto-style6 {
+            width: 37%;
+            height: 19px;
+        }
+        .auto-style7 {
+            width: 37%;
+        }
+         .auto-style22 {
+            width: 35%;
+            height: 19px;
+            text-align:justify;
+        }
+    </style>
+</head>
+	<body>
+		
+<table border="0" align="center" cellpadding="0" cellspacing="0" ID="Table1" style="width: 768px">
+  <tr style="background-color:#668ced">
+    <td><div align="center"  style="background-color:#668ced;font-size:large;color:#fafbfc;padding-top:10px"; ><b>SUBSCRIPTION TRANSACTION DETAILS - TERMINAL -#Terminal#</b></div></td>
+   </tr>    
+     <tr>
+    <td><div align="center" style="background-color: #668ced"></div></td>
+   </tr> 
+  <tr>
+	<td style="background-color: #dbe5ff">
+        <table style="padding-left:10%;padding-top:10%;padding-right:10%; width:100%">
+               <tr>
+                <td class="auto-style4"><div align="left"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  Name</font></strong></div></td>
+                 <td class="auto-style17"><div align="left"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  Mobile</font></strong></div></td>
+              <!--  <td class="auto-style19"><div align="left" style="width: 207px; margin-left: 15px"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                   LicenceNo</font></strong></div></td>-->
+                 <td class="auto-style6"> <div align="left"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  Terminal</font></strong></div></td>
+            </tr>
+            <tr>
+                <td height="19" class="auto-style5">#FirstName# #LastName#</td>              
+                <td height="19" class="auto-style18">#Mobile#</td>
+              <!-- <td height="19" class="auto-style22">#DriverLicenceNo#</td>-->
+                  <td height="19" class="auto-style7">#Terminal#</td>
+
+            </tr>
+        </table>
+	</td>
+  </tr>
+   <tr>
+			
+    <td height="148" bgcolor="#dbe5ff"> 
+      <div align="center">
+	<form name="form1" method="post"  id="Form1">
+							
+          <table id="Table2" height="146" cellspacing="4" cellpadding="0" border="0">
+          
+           <tr> 
+              <td height="30" class="auto-style1"></td>
+              <td width="57%"><br /></td>
+              
+            </tr>
+            <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  Efpos Amount ::</font></strong></div></td>
+              <td width="57%">$ #EfposAmount#</td>
+
+            </tr> 
+            
+             <tr> 
+              <td class="auto-style2"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  &nbsp;Eftpos ReturnAmount ::</font></strong></div></td>
+              <td width="57%" class="auto-style3">$ #eftposReturnAmount#</td>
+            </tr> 
+              
+                 <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  &nbsp;Rent Amount ::</font></strong></div></td>
+              <td width="57%">$ #RentAmount#</td>
+            </tr>    
+            
+                
+               <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  &nbsp;Cash Amount ::</font></strong></div></td>
+              <td width="57%">$ #CashAmount#</td>
+            </tr>   
+             
+               <tr> 
+              <td height="19" class="auto-style1"> <div align="right" ><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  &nbsp;Cheque Amount ::</font></strong></div></td>
+              <td width="57%">$ #ChequeAmount#</td>
+            </tr>       
+               <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  &nbsp; Cheque Number ::</font></strong></div></td>
+              <td width="57%">#ChequeNumber#</td>
+            </tr>   
+                 <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                   &nbsp; Online Amount ::</font></strong></div></td>
+              <td width="57%">$ #OnlineAmount#</td>
+            </tr>  
+                 <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                   &nbsp; Advance Adjustments ::</font></strong></div></td>
+              <td width="57%">$ #AdvanceAmount#</td>
+            </tr>  
+                 <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                   &nbsp; LoanTo Driver ::</font></strong></div></td>
+              <td width="57%">$ #LoanToDriver#</td>
+            </tr>  
+                     <tr> 
+              <td height="19" class="auto-style1"> <div align="right"><strong>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                   </font></strong></div></td>
+              <td width="57%"></td>
+            </tr>  
+                    
+                 
+          </table>
+		</form>
+					</div>
+				</td>
+			</tr>
+			
+		</table>
+	</body>
+</html>
+
+

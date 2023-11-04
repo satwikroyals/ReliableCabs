@@ -1,0 +1,144 @@
+﻿@model ReliableCabs.Models.ReportModel
+@{
+    ViewBag.Title = "RptGetDriverTrans";
+    Layout = "~/Views/Shared/Rpt/RptLayoutHeader.cshtml";
+}
+
+<div class="container">
+    <div class ="container .box .box-cell.box4" style="padding-left:30%">
+        <table>
+            <tr>
+            <td>
+                <h3 style="color:darkblue"><b>DRIVER TRANSACTION DETAILS</b></h3>
+            </td>
+                @if (Model.ListFundsDetails.Count >0){
+   <td id="NetAmount" hidden>@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().NetAmount).ToString("0.00")</td>}
+                else
+                {
+                    <td id="NetAmount" hidden>0.00</td>
+                }
+          
+             </tr>
+        </table>
+ </div>
+</div>
+
+      <div class="col-md-12">
+                           
+   <table id="table_id" class="tablesaw table-striped table-hover table-bordered table">
+    <thead>
+        <tr style="background-color:#87CEEB">
+            <th>Sub Trans Id</th>
+            <th>Name</th>
+            <th>Terminal</th>
+            <th>Trans Date</th>
+             <th>Eftpos Amount</th>
+             <th>Eftpos Return Amount</th>
+             <th>Chits Amount </th>
+             <th>Chits Return Amount</th>
+             <th>Rent Deducted</th>
+             <th>Net Return Amount</th>
+            <th>Cash Amount</th>
+            <th>Cheque Amount</th>
+             <th>Online Amount</th>
+            <th>Advance Ajustments</th>
+            <th>Loan To Driver</th>
+           
+   
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+    {
+    foreach (var item in Model.ListAllSubTransDetails)
+    {
+
+        <tr>
+            <td>@item.SubTransId</td>
+            <td>@item.Name</td>
+            <td>@item.Terminal</td>
+             <td>@Convert.ToDateTime(item.TransDate).ToString("dd/MM/yyyy")</td>
+            <td style="background-color:MistyRose">@item.EfposAmount</td>
+            <td style="background-color:#FFF0F5">@item.EftposchargeAmount1</td>
+             <td style="background-color:#FFEBCD">@item.ChitsAmount</td>
+             <td style="background-color:#FFF8DC">@item.ChitschargeAmount1</td>
+             <td>@if (item.RentAmount == 0 || Convert.ToString(item.RentAmount).Trim().Length == 0 || item.RentAmount <= 0)
+                                                {  <p> 0.00</p>}
+                                                else
+                                                {  @item.RentAmount}</td>
+           <td>@item.NetReturnAmount</td>  
+              <td style="background-color:#FAFAD2" >@if (item.CashAmount == 0 || Convert.ToString(item.CashAmount).Trim().Length == 0 || item.CashAmount <= 0)
+                                                {  <p> 0.00</p>}
+                                                else
+                                                { @item.CashAmount}</td>
+             <td style="background-color:#FAFAD2">@if (item.ChequeAmount == 0 || Convert.ToString(item.ChequeAmount).Trim().Length == 0 || item.ChequeAmount <= 0)
+                                                {  <p> 0.00</p>}
+                                                else
+                                                {@item.ChequeAmount}</td>
+              <td style="background-color:#FAFAD2">@if (item.OnlineAmount == 0 || Convert.ToString(item.OnlineAmount).Trim().Length == 0 || item.OnlineAmount <= 0)
+                                                {  <p> 0.00</p>}
+                                                else
+                                                {@item.OnlineAmount}</td>
+             <td style="background-color:#FAFAD2">@if (item.AdvanceAdjustment == 0 || Convert.ToString(item.AdvanceAdjustment).Trim().Length == 0 || item.AdvanceAdjustment <= 0)
+                                                {  <p> 0.00</p>}
+                                                else
+                                                {  @item.AdvanceAdjustment}</td>
+            <td>@if (item.LoanToDriver == 0 || Convert.ToString(item.LoanToDriver).Trim().Length == 0 || item.LoanToDriver <= 0)
+                                                {  <p> 0.00</p>}
+                                                else
+                                                {  @item.LoanToDriver}</td>
+            
+           
+        </tr>
+            
+        }
+     } 
+      
+                 
+        </tbody>
+</table>
+         </div>           
+
+
+
+@section scripts
+{
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   @* <script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+@*<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>*@
+   <script src=" https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></script>
+    <script src="~/Content/plugins/components/datatables/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            document.getElementById('Pendingamtnew').value = $("#NetAmount").text();
+            //$('#table_id').DataTable();
+            $('#table_id').DataTable({
+                responsive: true,
+                "oLanguage": {
+                    "sSearch": "<b>Search Report By :</b> "
+                },
+
+                columnDefs: [{
+                    targets: [4,5,6,7,8,9,10,11,12],
+                    render:$.fn.dataTable.render.number(',', '.', 2)
+        }]
+            });
+
+            $('.dataTables_filter input[type="search"]').
+
+            css({ 'width': '250px', 'height': '40px',  'align': 'right', 'display': 'inline-block', "position": "right", "left": "-100px" });
+
+        
+
+        });
+
+
+        function getdata(SubTransId) {
+            var SubTransId = SubTransId;
+            window.location.href = "@Url.Action("GetSubTransIdDetails", "Reports")?SubTransId=" + SubTransId;
+
+    }
+
+</script>
+    }

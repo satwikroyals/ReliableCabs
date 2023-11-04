@@ -1,0 +1,965 @@
+﻿@model ReliableCabs.Models.SubscriptionTrans
+
+
+@if (Model != null)
+{
+    foreach (var i in Model.ListCommDetails)
+    {
+
+        <div class="col-sm-6">
+            <div class="white-box">
+                <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                    <thead>
+                        <tr style="background-color:lightgray">
+                            <th style="text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Transactions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Date</th>
+                            <td>@Convert.ToDateTime(i.Date).ToString("dd/MM/yyyy")</td>
+                            <td id="EftposCommId" hidden> @i.EfposServiceCharge</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Amount ($)</th>
+                            <td style="background-color: lightgoldenrodyellow">
+                                <input type="text" hidden id="currency" style="width:5px" />
+                               
+                                <input type="text" id="txtEftposAmount" style="border-style:none;background-color: lightgoldenrodyellow" title="Enter Eftpos Amount" pattern="^[0-9]*$" />
+                              
+                            </td>
+                        </tr>
+                        @*   <tr>
+                                <th  scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Service (%)</th>
+                                <td id="EftposCommId"> @i.EfposServiceCharge</td>
+                            </tr>*@
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Return Amount</th>
+                            <td> <input type="text" id="txtResults" style="border-style:hidden;background-color:transparent" readonly="true" /><input type="hidden" id="txtResult1" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Remarks</th>
+                            <td style="background-color: lightgoldenrodyellow"><input type="text" id="Remarks" style="border-style:none;background-color: lightgoldenrodyellow" title="Enter Comments" name="Remarks" /></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Total Return Amount</th>
+                            <td> <input type="text" id="txtTotalResult" style="border-style:hidden;background-color:transparent" readonly="true" /> <input type="hidden" id="txtTotalResult1" /> </td>
+
+                            <td id="number" hidden>@Html.TextBoxFor(m => m.ClientId, new { style = "display: none;" })  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="white-box">
+                <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                    <thead>
+                        <tr style="background-color:lightgray">
+                            <th style="text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Transactions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Date</th>
+                            <td>@Convert.ToDateTime(i.Date).ToString("dd/MM/yyyy")</td>
+                            <td id="chitcommId" hidden> @i.ChitsCommission</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Amount ($)</th>
+                            <td style="background-color: lightgoldenrodyellow" id="currency1">
+                                <input type="text" id="txtChitsAmount" style="border-style:none;background-color: lightgoldenrodyellow" title="Enter Chits Amount" pattern="^[0-9]*$" />
+                            </td>
+                        </tr>
+                        @* <tr>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Service (%)</th>
+                                <td id="chitcommId"> @i.ChitsCommission</td>
+                            </tr>*@
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Return Amount</th>
+                            <td> <input type="text" id="txtResult" style="border-style:hidden;background-color:transparent" readonly="true" /><input type="hidden" id="txtResult2" /></td>
+                        </tr>
+
+                        @* </tbody>
+                            </table>
+                             <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                                <thead>*@
+                        <tr style="background-color:lightgray">
+                            <th style="text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Rent Transactions</th>
+
+                        </tr>
+                        @* </thead>
+                            <tbody>*@
+                        @if (Model != null)
+                        {
+                            foreach (var k in Model.ListTransDetails)
+                            {
+                    <tr>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Rent Amount</th>
+                        <td id="currency2">
+                            <input type="text" id="txtRentAmount" style="background-color:transparent;border-style:none" autocomplete="off" />
+                        </td>
+                        
+                        <td id="rentamt" hidden>
+                            @if (k.RentBalance == 0 || Convert.ToString(k.RentBalance).Trim().Length == 0 || k.RentBalance <= 0)
+                            {<p> 0</p>}
+                            else
+                            { <p>@Convert.ToDecimal(k.RentBalance).ToString("#.##")</p>}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Rent Comments</th>
+                        <td id="currency2">
+                            <input type="text" id="txtRentcomments" style="background-color:transparent;border-style:none" />
+                        </td>
+                    </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="white-box">
+                <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+
+                    <thead>
+                        <tr style="background-color:lightgray">
+                            <th style="padding-left:10%;text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">
+                                Return Amount Transaction
+                                <span style="padding-left:33%;font-family:Calibri;font-size:15px;color:blue">
+                                    Total Amount :
+                                    <input type="text" id="txtTotalResult2" style="border-style:hidden;background-color:transparent;color:red;width:60px;font-size:medium" readonly="true" />
+                                </span>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cash Amount</th>
+                            <td>
+                                <input type="text" id="txtCashAmount" class="ReturnAmtTrans" style="border-style:hidden;background-color: transparent" title="Enter cash amount" pattern="^[0-9]*$" />
+
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cheque Amount</th>
+                            <td><input type="text" id="txtChequeAmount" class="ReturnAmtTrans" style="border-style:hidden; background-color: transparent" title="Enter Cheque amount" pattern="^[0-9]*$" /></td>
+                            @* <td id="subscriptionid" hidden> @Model.SubscriptionId </td>*@
+                        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cheque Number</th>
+                            <td><input type="text" id="txtChequeNumber" style="border-style:hidden; background-color: transparent" title="Enter Cheque Number" pattern="^[0-9]*$" /></td>
+                            @* <td id="subscriptionid" hidden> @Model.SubscriptionId </td>*@
+                        </tr>
+
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Online Amount</th>
+                            <td><input type="text" id="txtOnlineAmount" style="border-style:hidden;background-color: transparent" class="ReturnAmtTrans" title="Enter Online amount" pattern="^[0-9]*$" /></td>
+
+                        </tr>
+
+                        <tr>
+                            @if (Model.PendingLoanAmount == 0 || Convert.ToString(Model.PendingLoanAmount).Trim().Length == 0 || Model.PendingLoanAmount <= 0)
+                            {
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Loan Repayment  (Loan Amt: $ 0)</th>
+                            }
+                            else
+                            {
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">
+                            Loan Repayment  (Loan Amt:$@Convert.ToDecimal(Model.PendingLoanAmount).ToString("#.##"))
+                            <button type="button" id="Deleteloan"><i class="fa fa-trash" ></i> Delete</button>
+
+                        </th>
+                            }
+
+                            <td><input type="text" id="txtAdvanceAmount" style="border-style:hidden;background-color: transparent" class="ReturnAmtTrans" title="Enter Advance amount" pattern="^[0-9]*$" /></td>
+                            <td id="loanamt" hidden>@Model.PendingLoanAmount</td>
+                        </tr>
+                        @*<tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Loan to Driver</th>
+                            <td><input type="text" id="txtLoantoDriver" style="border-style:hidden;background-color: transparent" title="Enter Loan amount" pattern="^[0-9]*$" /></td>
+
+                        </tr>*@
+
+                    </tbody>
+                </table>
+
+                <div style="text-align:center;display:none" id="loaderDiv">
+
+                    <img src="~/Content/img/loadimg.gif" />
+
+                </div>
+
+
+                @if (Model != null)
+                {
+                    foreach (var k in Model.ListTransDetails)
+                    {
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+
+                            <button type="button" id="AddToSubTrans" class="btn btn-block btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Submit</button>
+
+                        </div>
+                    }
+
+                    <!-------------------------Model popups Start ------------------------------------------>@*
+                          foreach (var k in Model.ListCommDetails)
+                          {
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+
+                             <button class="btn btn-block btn-info1 cvb " data-toggle="modal" data-target="#exampleModal" id =popupModel>Transaction</button>
+                                                </div>
+                          }*@
+                }
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+
+                    @*   @Html.Partial("PartialSubTransModal", Model)  *@
+                    @*  <img  src="~/Content/img/loadingimg.gif" />         *@
+
+
+                </div>
+
+                <!-------------------------Model popups End ------------------------------------------>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="white-box">
+                <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+
+                    <thead>
+                        <tr style="background-color:lightgray">
+                            <th style="padding-left:20%;text-align:center; font-size: 18px;" colspan="2" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">
+                               Loan Transaction
+                                <span style="padding-left:33%;font-family:Calibri;font-size:15px;color:blue">
+                                    Total Amount :
+                                    <input type="text" id="txtLoanTotalResult" style="border-style:hidden;background-color:transparent;color:red;width:60px;font-size:medium" readonly="true" />
+                                </span>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Loan to Driver</th>
+            <td><input type="text" id="txtLoantoDriver" style="border-style:hidden;background-color: transparent" title="Enter Loan amount" pattern="^[0-9]*$" /></td>
+
+        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cash Amount</th>
+                            <td>
+                                <input type="text" id="txtCashAmount1" class="ReturnAmtTrans1" style="border-style:hidden;background-color: transparent" title="Enter cash amount" pattern="^[0-9]*$" />
+
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cheque Amount</th>
+                            <td><input type="text" id="txtChequeAmount1" class="ReturnAmtTrans1" style="border-style:hidden; background-color: transparent" title="Enter Cheque amount" pattern="^[0-9]*$" /></td>
+                            @* <td id="subscriptionid" hidden> @Model.SubscriptionId </td>*@
+                        </tr>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Cheque Number</th>
+                            <td><input type="text" id="txtChequeNumber1" style="border-style:hidden; background-color: transparent" title="Enter Cheque Number" pattern="^[0-9]*$" /></td>
+                          
+                        </tr>
+
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Online Amount</th>
+                            <td><input type="text" id="txtOnlineAmount1" style="border-style:hidden;background-color: transparent" class="ReturnAmtTrans1" title="Enter Online amount" pattern="^[0-9]*$" /></td>
+                            <td hidden>   @Html.TextBoxFor(m => m.Password1, new { style = "display: none;" })</td>
+                        </tr>
+
+                        @*<tr>
+            @if (Model.LoanAmount == 0 || Convert.ToString(Model.LoanAmount).Trim().Length == 0 || Model.LoanAmount <= 0)
+            {
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Advance Adjustment  (Loan Amt: $0)</th>
+            }
+            else
+            {
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Advance Adjustment  (Loan Amt:$@Convert.ToDecimal(Model.LoanAmount).ToString("#.##"))</th>
+            }
+
+            <td><input type="text" id="txtAdvanceAmount" style="border-style:hidden;background-color: transparent" class="ReturnAmtTrans" title="Enter Advance amount" pattern="^[0-9]*$" /></td>
+            <td id="loanamt" hidden>@Model.PendingLoanAmount</td>
+        </tr>*@
+
+
+                    </tbody>
+                </table>
+
+               
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+
+                    @*   @Html.Partial("PartialSubTransModal", Model)  *@
+                    @*  <img  src="~/Content/img/loadingimg.gif" />         *@
+
+
+                </div>
+
+                <!-------------------------Model popups End ------------------------------------------>
+
+            </div>
+        </div>
+    }
+}
+<script src="/Content/js/jquery-2.2.0.min.js"></script>
+@*<script src="~/Content/qrcode/jquery.min.js"></script>*@
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        var txtrent = $("#rentamt").text();
+        //document.getElementById('txtRentAmount').value = $("#rentamt").text();
+        document.getElementById('txtRentAmount').value = isNaN(parseFloat(txtrent)) ? 0 : parseFloat(txtrent);
+
+
+     var PendingCash = document.getElementById('Pendingamtnew').value;
+     var PendingCashAmt = isNaN(parseFloat(PendingCash)) ? 0 : parseFloat(PendingCash);
+
+
+
+        $("#txtChitsAmount").on("keyup", function () {
+
+            //var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+            //    val = this.value;
+
+            //if (!valid) {
+            //    alert("Please enter valid amount, eg xx.xx!");
+            //    this.value = val.substring(0, val.length - 3);
+            //}
+            //document.getElementById('currency').value = '$';
+
+            //var txtFirstNo = document.getElementById('txtChitsAmount').value;
+
+
+            //var txtSecondNo = document.getElementById('chitcommId').innerText;
+
+            //var result1 = (parseFloat(txtFirstNo) / 100) * parseFloat(txtSecondNo);
+
+            //var result = parseFloat(txtFirstNo) - parseFloat(result1)
+
+            //if (!isNaN(result)) {
+            //    document.getElementById('txtResult').value = ' $' + result.toFixed(2);
+            //    document.getElementById('txtResult2').value = result.toFixed(2);
+            //    var R1 = result;
+            //}
+
+            //if (!isNaN(document.getElementById('txtEftposAmount').value)) { document.getElementById('txtResult1').value = 0 }
+            //var txtRentAmount = (parseInt(document.getElementById('txtRentAmount').value));
+            //if (!isNaN(txtRentAmount)) {
+            //    txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+            //    alert(txtTotalResult);
+            //    if (txtTotalResult > 0) {
+            //        txtTotalResult = txtTotalResult - (parseFloat(document.getElementById('txtRentAmount').value));
+
+            //    }
+            // }
+            //else {
+            //    txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+            //    alert(txtTotalResult);
+            //}
+
+            //if (!isNaN(txtTotalResult)) {
+            //    document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+            //    document.getElementById('txtTotalResult1').value = txtTotalResult;
+            //    document.getElementById('txtTotalResult2').value = txtTotalResult;
+            //}
+
+            var valid = /^\d{0,5}(\.\d{0,4})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            document.getElementById('currency').value = '$';
+
+            var txtFirstNo = document.getElementById('txtChitsAmount').value;
+
+
+            var txtSecondNo = document.getElementById('chitcommId').innerText;
+
+            var result1 = (parseFloat(txtFirstNo) / 100) * parseFloat(txtSecondNo);
+
+            var result = parseFloat(txtFirstNo) - parseFloat(result1)
+
+            if (!isNaN(result)) {
+                document.getElementById('txtResult').value = ' $' + result.toFixed(2);
+                document.getElementById('txtResult2').value = result;
+                var R1 = result;
+            }
+
+            var txtRentAmount = (parseFloat(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtRentAmount)) {
+                txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+                txtTotalResult = txtTotalResult - (parseFloat(document.getElementById('txtRentAmount').value));
+            }
+            else {
+                txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+            }
+
+            if (!isNaN(txtTotalResult)) {
+                document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+                document.getElementById('txtTotalResult1').value = txtTotalResult;
+                document.getElementById('txtTotalResult2').value = txtTotalResult;
+            }
+        });
+
+        $("#txtEftposAmount").on("keyup", function () {
+            var valid = /^\d{0,5}(\.\d{0,4})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            // new  added code
+            var txtFirstNo = document.getElementById('txtEftposAmount').value;
+
+
+            var txtSecondNo = document.getElementById('EftposCommId').innerText;
+
+            var result1 = (parseFloat(txtFirstNo) / 100) * parseFloat(txtSecondNo);
+
+            var result = parseFloat(txtFirstNo) - parseFloat(result1)
+
+            if (!isNaN(result)) {
+                document.getElementById('txtResults').value = ' $' + result.toFixed(2);
+                document.getElementById('txtResult1').value = result;
+                var R2 = result;
+            }
+
+            if (!isNaN(document.getElementById('txtChitsAmount').value)) { document.getElementById('txtResult2').value = 0 }
+            var txtRentAmount = (parseFloat(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtRentAmount)) {
+                txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+                txtTotalResult = txtTotalResult - (parseFloat(document.getElementById('txtRentAmount').value));
+            }
+            else {
+                txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+            }
+            //txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+            if (!isNaN(txtTotalResult)) {
+                document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+                document.getElementById('txtTotalResult1').value = txtTotalResult;
+                document.getElementById('txtTotalResult2').value = txtTotalResult;
+            }
+            // var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+            //    val = this.value;
+
+            //if (!valid) {
+            //    alert("Please enter valid amount, eg xx.xx!");
+            //    this.value = val.substring(0, val.length - 3);
+            //}
+            //// new  added code
+            //var txtFirstNo = document.getElementById('txtEftposAmount').value;
+
+
+            //var txtSecondNo = document.getElementById('EftposCommId').innerText;
+
+            //var result1 = (parseFloat(txtFirstNo) / 100) * parseFloat(txtSecondNo);
+
+            //var result = parseFloat(txtFirstNo) - parseFloat(result1)
+
+            //if (!isNaN(result)) {
+            //    document.getElementById('txtResults').value = ' $' + result.toFixed(2);
+            //    document.getElementById('txtResult1').value = result.toFixed(2);
+            //    var R2 = result;
+            //}
+
+            //if (!isNaN(document.getElementById('txtChitsAmount').value)) {
+            //    document.getElementById('txtResult2').value = 0;
+            //}
+
+            //var txtRentAmount = (parseInt(document.getElementById('txtRentAmount').value));
+
+            //if (txtRentAmount>0) {
+            //    //if (!isNaN(txtRentAmount)) {
+            //    txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+            //    if (txtTotalResult > 0) {
+            //        txtTotalResult = txtTotalResult - (parseFloat(document.getElementById('txtRentAmount').value));
+            //    }
+            //}
+            //else {
+            //    txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+            //}
+
+            ////txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+            //if (txtTotalResult > 0) {
+            //    document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+            //    document.getElementById('txtTotalResult1').value = txtTotalResult;
+            //    document.getElementById('txtTotalResult2').value = txtTotalResult;
+            //}
+            ////end code
+        });
+
+        $("#txtRentAmount").on("keyup", function () {
+            //var Password1 = document.getElementById('Password1').value;
+
+            //   var txt;
+            //    var pin = prompt("Please enter your pin number:", "");
+            //    if (pin == null || pin == "") {
+            //       alert("User cancelled the prompt");
+            //    }
+            //    else
+            //    if (pin == Password1) {
+
+                    var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                        val = this.value;
+
+                    if (!valid) {
+                        alert("Please enter valid amount, eg xx.xx!");
+                        this.value = val.substring(0, val.length - 3);
+                    }
+                    document.getElementById('currency2').value = '$';
+
+                    var txtRentAmount = (parseFloat(document.getElementById('txtRentAmount').value));
+                    if (!isNaN(txtRentAmount)) {
+                        txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+                        txtTotalResult = txtTotalResult - (parseFloat(document.getElementById('txtRentAmount').value));
+                    }
+                    else {
+                        txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+                    }
+                    //txtTotalResult = txtTotalResult - (parseInt(document.getElementById('txtRentAmount').value));
+                    if (!isNaN(txtTotalResult)) {
+                        document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+                        document.getElementById('txtTotalResult1').value = txtTotalResult;
+                        document.getElementById('txtTotalResult2').value = txtTotalResult;
+                    }
+                    if (txtRentAmount > txtTotalResult) {
+                        alert("Please enter valid amount - Rent Amount exceeds Total Amount ");
+                        document.getElementById('txtRentAmount').value = "";
+                        var txtTotalResult = ((parseFloat(document.getElementById('txtResult1').value)) + (parseFloat(document.getElementById('txtResult2').value)));
+                        document.getElementById('txtTotalResult').value = ' $' + txtTotalResult.toFixed(2);
+                    }
+
+                //} else {
+                //    alert("Please enter correct security code");
+                //    var txtrent = $("#rentamt").text();
+                //    //document.getElementById('txtRentAmount').value = $("#rentamt").text();
+                //    document.getElementById('txtRentAmount').value = isNaN(parseFloat(txtrent)) ? 0 : parseFloat(txtrent);
+                //   return false;
+                //     }
+
+        });
+
+        $(".ReturnAmtTrans").on("keyup", function () {
+
+            var total = 0.00;
+
+            var EfposAmount = document.getElementById('txtEftposAmount').value;
+            var ChitsAmount = document.getElementById('txtChitsAmount').value;
+            var TotalResult = document.getElementById('txtTotalResult1').value;
+            if (!TotalResult) {
+                alert("Please Enter EFtpos or Chits Amount");
+                document.getElementById('txtChequeAmount').value="";
+                document.getElementById('txtChequeNumber').value="";
+                document.getElementById('txtCashAmount').value="";
+                document.getElementById('txtOnlineAmount').value="";
+                document.getElementById('txtAdvanceAmount').value="";
+
+            }
+            else {
+            $(".ReturnAmtTrans").each(function () {
+
+                var amt = $(this).val();
+                var amount = 0.00;
+                if (amt == '') {
+                    amount = 0.00;
+                } else {
+                    amount = parseFloat(amt);
+                }
+                var valid = /^\d{0,5}(\.\d{0,4})?$/.test(amt),
+                               val = amt;
+
+                if (!valid) {
+                    alert("Please enter valid amount, eg xx.xx!");
+                    this.value = val.substring(0, val.length - 4);
+                    return;
+                }
+
+                //alert(amount);
+                total = total + amount;
+                var totalAmt = parseFloat(document.getElementById('txtTotalResult1').value);
+                if (total > totalAmt) {
+                    alert("Sum exceeds total amount");
+                    this.value = val.substring(0, val.length - 2);
+                }
+                else {
+                    var stotal = totalAmt - total;
+                    document.getElementById('txtTotalResult2').value = stotal.toFixed(2);
+
+                }
+
+
+            });
+            }
+        });
+
+        $(".ReturnAmtTrans1").on("keyup", function () {
+
+            var total = 0.00;
+
+            var totalLoanAmt = parseFloat(document.getElementById('txtLoantoDriver').value);
+            if (!totalLoanAmt) {
+                alert("Please enter Loan Amount");
+                document.getElementById('txtChequeAmount1').value = "";
+                document.getElementById('txtChequeNumber1').value="";
+                document.getElementById('txtCashAmount1').value="";
+                document.getElementById('txtOnlineAmount1').value="";
+
+            }
+            else {
+
+                $(".ReturnAmtTrans1").each(function () {
+
+                    var amt = $(this).val();
+                    var amount = 0.00;
+                    if (amt == '') {
+                        amount = 0.00;
+                    } else {
+                        amount = parseFloat(amt);
+                    }
+                    var valid = /^\d{0,4}(\.\d{0,3})?$/.test(amt),
+                        val = amt;
+
+                    if (!valid) {
+                        alert("Please enter valid amount, eg xx.xx!");
+                        this.value = val.substring(0, val.length - 4);
+                        return;
+                    }
+
+                    //alert(amount);
+                    total = total + amount;
+                    var totalAmt = parseFloat(document.getElementById('txtLoantoDriver').value);
+                    if (total > totalAmt) {
+                        alert("Sum exceeds total amount");
+                        this.value = val.substring(0, val.length - 2);
+                    }
+                    else {
+                        var stotal = totalAmt - total;
+                        document.getElementById('txtLoanTotalResult').value = stotal.toFixed(2);
+
+                    }
+
+
+                });
+            }
+        });
+
+        $("#txtCashAmount").on("keyup", function () {
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 4);
+                return;
+            }
+
+
+            var Cash = document.getElementById('txtCashAmount').value;
+            var Cashamt = isNaN(parseFloat(Cash)) ? 0 : parseFloat(Cash);
+
+            if (!Cashamt) {
+                document.getElementById('Pendingamtnew').value = PendingCashAmt.toFixed(2);
+            } else {
+                var totalCashAmt = PendingCashAmt - Cashamt;
+
+                document.getElementById('Pendingamtnew').value = totalCashAmt.toFixed(2);
+            }
+        });
+
+        $("#AddToSubTrans").click(function () {
+
+            $("#loaderDiv").show();
+            var clientid = document.getElementById('ClientId').value;
+
+            var EfposAmount = document.getElementById('txtEftposAmount').value;
+            if (!EfposAmount) { EfposAmount = 0; }
+
+            var ChitsAmount = document.getElementById('txtChitsAmount').value;
+            if (!ChitsAmount) { ChitsAmount = 0; }
+
+            var Comments = document.getElementById('Remarks').value;
+            var Password1 = document.getElementById('Password1').value;
+
+            var chitsReturnAmount = document.getElementById('txtResult2').value;
+            var eftposReturnAmount = document.getElementById('txtResult1').value;
+            var TotalAmount = document.getElementById('txtTotalResult1').value;
+            var RentAmount = document.getElementById('txtRentAmount').value;
+
+            var ChequeAmount = document.getElementById('txtChequeAmount').value;
+            if (!ChequeAmount) { ChequeAmount = 0;  }
+            var ChequeNumber = document.getElementById('txtChequeNumber').value;
+            if (!ChequeAmount) {
+                if (!ChequeNumber) { ChequeNumber = 0; }
+            }
+            else {
+                if (!ChequeNumber) {
+                    alert('Please enter Cheque Number');
+                    $("#loaderDiv").hide();
+                    return false;}
+            }
+            var CashAmount = document.getElementById('txtCashAmount').value;
+            if (!CashAmount) { CashAmount = 0; }
+            var OnlineAmount = document.getElementById('txtOnlineAmount').value;
+            if (!OnlineAmount) { OnlineAmount = 0; }
+            var AdvanceAmount = document.getElementById('txtAdvanceAmount').value;
+            if (!AdvanceAmount) { AdvanceAmount = 0; }
+            var LoanToDriver = document.getElementById('txtLoantoDriver').value;
+            if (!LoanToDriver) { LoanToDriver = 0; }
+
+            var RentComments = document.getElementById('txtRentcomments').value;
+
+            var LoanChequeAmount = document.getElementById('txtChequeAmount1').value;
+            if (!LoanChequeAmount) { LoanChequeAmount = 0; }
+            var LoanChequeNumber = document.getElementById('txtChequeNumber1').value;
+            if (!LoanChequeAmount) {
+                if (!LoanChequeNumber) { LoanChequeNumber = 0; }
+            }
+            else {
+                if (!LoanChequeNumber) {
+                    alert('Please enter Cheque Number');
+                    $("#loaderDiv").hide();
+                    return false;
+                }
+            }
+            var LoanCashAmount = document.getElementById('txtCashAmount1').value;
+            if (!LoanCashAmount) { LoanCashAmount = 0; }
+            var LoanOnlineAmount = document.getElementById('txtOnlineAmount1').value;
+            if (!LoanOnlineAmount) { LoanOnlineAmount = 0; }
+            var AdvanceAmount = document.getElementById('txtAdvanceAmount').value;
+            if (!AdvanceAmount) { AdvanceAmount = 0; }
+
+
+            var totalAmt = parseFloat(document.getElementById('txtTotalResult1').value);
+            if (!totalAmt) {
+                totalAmt = 0;
+            }
+            var remainingTransamt = totalAmt - (ChequeAmount + CashAmount + OnlineAmount + AdvanceAmount);
+            //alert(remainingTransamt);
+
+            var totalLoanAmt = parseFloat(document.getElementById('txtLoantoDriver').value);
+            if (!totalLoanAmt) {
+                totalLoanAmt = 0;
+            }
+
+            var remainingloanamt = totalLoanAmt - (LoanChequeAmount + LoanCashAmount + LoanOnlineAmount)
+
+            var loanbalanceamt = document.getElementById('txtLoanTotalResult').value
+
+            if (loanbalanceamt != 0) {
+                alert("Loan Transactions does not tally");
+                $("#loaderDiv").hide();
+                return false;
+            }
+            else {
+
+                var r = confirm("Are you sure to submit.");
+                if (r == true) {
+
+                    var txtRentAmount = (parseFloat(document.getElementById('txtRentAmount').value));
+                    var txtrent = $("#rentamt").text();
+
+                    if (txtRentAmount == txtrent) {
+
+                        $.ajax({
+                            url: '@Url.Action("SubTransInsert", "SubscriptionTrans")',
+                            type: "POST",
+                            //data: data,
+                            data:
+                            {
+                                Clientid: clientid,
+                                EfposAmount: EfposAmount,
+                                ChitsAmount: ChitsAmount,
+                                chitsReturnAmount: chitsReturnAmount,
+                                eftposReturnAmount: eftposReturnAmount,
+                                TotalAmount: TotalAmount,
+                                RentAmount: RentAmount,
+                                Comments: Comments,
+                                ChequeAmount: ChequeAmount,
+                                ChequeNumber: ChequeNumber,
+                                CashAmount: CashAmount,
+                                OnlineAmount: OnlineAmount,
+                                AdvanceAmount: AdvanceAmount,
+                                LoanToDriver: LoanToDriver,
+                                LoanChequeAmount: LoanChequeAmount,
+                                LoanCashAmount: LoanCashAmount,
+                                LoanOnlineAmount: LoanOnlineAmount,
+                                LoanChequeNumber: LoanChequeNumber
+
+                            },
+
+
+                            success: function (data) {
+                                $("#loaderDiv").hide();
+                                alert("Submitted");
+                                var id = @ViewBag.ClientId;
+                                    $("#ProdPartials").load('@(Url.Action("GetTransactionDetails", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                                $("#ProdPartial1").load('@(Url.Action("GetTransactionDetails1", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                                $("#ProdPartials1").load('@(Url.Action("GetTransHistory", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                            },
+
+                            error: function (jqXHR, status, text) {
+
+                                alert("Not Submitted ");
+                            }
+
+
+                        });
+                    }
+                    else {
+                        var Password1 = document.getElementById('Password1').value;
+
+                        var txt;
+                        var pin = prompt("Please enter your pin number:", "");
+                        if (pin == null || pin == "") {
+                            alert("User cancelled the prompt");
+                            $("#loaderDiv").hide();
+                        }
+                        else
+                            if (pin == Password1) {
+
+                                $.ajax({
+                                    url: '@Url.Action("SubTransInsert", "SubscriptionTrans")',
+                                    type: "POST",
+                                    //data: data,
+                                    data:
+                                    {
+                                        Clientid: clientid,
+                                        EfposAmount: EfposAmount,
+                                        ChitsAmount: ChitsAmount,
+                                        chitsReturnAmount: chitsReturnAmount,
+                                        eftposReturnAmount: eftposReturnAmount,
+                                        TotalAmount: TotalAmount,
+                                        RentAmount: RentAmount,
+                                        Comments: Comments,
+                                        ChequeAmount: ChequeAmount,
+                                        ChequeNumber: ChequeNumber,
+                                        CashAmount: CashAmount,
+                                        OnlineAmount: OnlineAmount,
+                                        AdvanceAmount: AdvanceAmount,
+                                        LoanToDriver: LoanToDriver,
+                                        LoanChequeAmount: LoanChequeAmount,
+                                        LoanCashAmount: LoanCashAmount,
+                                        LoanOnlineAmount: LoanOnlineAmount,
+                                        LoanChequeNumber: LoanChequeNumber
+
+                                    },
+
+
+                                    success: function (data) {
+                                        $("#loaderDiv").hide();
+                                        alert("Submitted");
+                                        var id = @ViewBag.ClientId
+                                            $("#ProdPartials").load('@(Url.Action("GetTransactionDetails", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                                        $("#ProdPartial1").load('@(Url.Action("GetTransactionDetails1", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                                        $("#ProdPartials1").load('@(Url.Action("GetTransHistory", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                                    },
+
+                                    error: function (jqXHR, status, text) {
+
+                                        alert("Not Submitted ");
+                                    }
+
+
+                                });
+                            }
+                           else {
+                        alert("Please enter correct security code");
+                        var txtrent = $("#rentamt").text();
+                        //document.getElementById('txtRentAmount').value = $("#rentamt").text();
+                                document.getElementById('txtRentAmount').value = isNaN(parseFloat(txtrent)) ? 0 : parseFloat(txtrent);
+                                $("#loaderDiv").hide();
+                        return false;
+                             }
+                    }
+                }
+                else {
+                    $("#loaderDiv").hide();
+                    return false;
+                }
+            }
+
+        });
+
+        $("#txtLoantoDriver").on("keyup", function () {
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+            // new  added code
+            var txtloan = parseFloat(document.getElementById('txtLoantoDriver').value);
+
+            document.getElementById('txtLoanTotalResult').value = txtloan;
+        });
+
+        $("#Deleteloan").click(function () {
+
+
+            var clientid = document.getElementById('ClientId').value;
+
+                var r = confirm("Are you sure to delete loan amount.");
+                if (r == true) {
+
+                            $.ajax({
+                            url: '@Url.Action("Deleteloanamt", "SubscriptionTrans")',
+                            type: "POST",
+                            //data: data,
+                            data:
+                            {
+                                Clientid: clientid
+
+                            },
+
+
+                            success: function (data) {
+                                $("#loaderDiv").hide();
+                                alert("Loan amount deleted successfully");
+                                var id = clientid
+                                    $("#ProdPartials").load('@(Url.Action("GetTransactionDetails", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                                $("#ProdPartial1").load('@(Url.Action("GetTransactionDetails1", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                                $("#ProdPartials1").load('@(Url.Action("GetTransHistory", "SubscriptionTrans", null, Request.Url.Scheme))?id=' + id)
+                            },
+
+                            error: function (jqXHR, status, text) {
+
+                                alert("Not Submitted ");
+                            }
+
+
+                             });
+                    }
+
+                else {
+                   return false;
+                }
+          
+
+        });
+
+     });
+</script>

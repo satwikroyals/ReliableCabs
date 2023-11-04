@@ -1,0 +1,332 @@
+﻿@model ReliableCabs.Models.SubscriptionModel
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+ <div class="panel-body">
+  
+     <div class="row">
+				   <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="panel panel-info welcome-panel">
+                           
+                            <div class="panel-wrapper collapse in" aria-expanded="true">
+      
+                                    <form action="#" class="form-horizontal"  >
+
+                                        <div class="form-body">
+
+                                            <div class="subscription-part" style="text-align:center;background-color:#81e7f7">
+                                                <h3 class="panel-header">SUBSCRIPTION</h3>
+                                                <p class="panel-sub-title"> Please Complete the form </p>
+                                            </div>
+
+                                            <hr class="m-t-0 m-b-40">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Terminal</label>
+                                                        <div class="col-md-7">
+                                                            @*  <input  type="text" class="form-control" placeholder="Terminal"> *@
+                                                            @Html.TextBoxFor(x => x.Terminal, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.Terminal, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Status</label>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(x => x.StatusId, ViewBag.StatusList as SelectList, "---Select Status--", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.StatusId, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Subscription Start Date</label>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                @Html.TextBoxFor(x => x.SubscriptionStartDate, new { @class = "form-control mydatepicker" }) <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.SubscriptionStartDate, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Rent Amount</label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.RentAmount, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.RentAmount, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Period Type</label>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(x => x.PeriodTypeId, ViewBag.PeriodTypeList as SelectList, "---Select Period type--", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.PeriodTypeId, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Efpos Service Charge</label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.EfposServiceCharge, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.EfposServiceCharge, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5"> Loan Date</label>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                @Html.TextBoxFor(x => x.LoanDate, new { @class = "form-control mydatepicker" }) <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                                            </div>  <br />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Chits Commission</label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.ChitsCommission, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ChitsCommission, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Loan Amount</label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.LoanAmount, new { @class = "form-control" })
+                                                        </div>
+                                                        <br />
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                @* <div class="row">*@
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Other Info</label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.Notes, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(m => m.ClientId, new { style = "display: none;" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @*</div>*@
+                                                <!--/span-->
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Subscription End Date</label>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                @Html.TextBoxFor(x => x.SubscriptionEndDate, new { @class = "form-control mydatepicker" }) <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.SubscriptionEndDate, "", new { @style = "color:red" })
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+
+                                            </div>
+                                            <!--/row-->
+                                            @*   @if (Model != null)
+        {
+
+                                            *@<div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
+                                                                @*<input type="submit" class="btn btn-success"  value="Submit" onclick="javascript: return SubmitForm();" />>*@
+                                                                @* <p>
+                                <input type="submit" id="submit"  class="btn btn-success" name="submit" value="save" />
+                            </p>
+                                                                *@
+
+                                                                <input type="hidden" id="txtclientid" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6"> </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                           
+                                    </form>
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+					 <div class="col-md-2"></div>
+  </div>   
+ 
+    </div>
+    
+}
+@*<script src="~/Content/js/jquery-2.2.0.min.js"></script>*@
+
+
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="SubscriptionStartDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        });
+
+        var date_input = $('input[name="SubscriptionEndDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        });
+
+        var date_input1 = $('input[name="LoanDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input1.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        });
+
+        $("#submit").click(function (event) {
+            if (!confirm('Are you sure that you want to submit the form')) {
+                event.preventDefault();
+            }
+
+        });
+
+       
+
+
+        //function btnClick(ClientId) {
+        $("#btnSubmit").click(function () {
+
+            
+            var r = confirm("Are you sure to submit.");
+
+            if (r == true) {
+
+                var txt;
+                var person = prompt("Please enter your name:", "");
+                if (person == null || person == "") {
+                    txt = "User cancelled the prompt.";
+                } else {
+                    txt = "Hello " + person + "! How are you today?";
+                }
+                document.getElementById("demo").innerHTML = txt;
+
+
+                var ClientId = document.getElementById('ClientId').value;
+                var Terminal = document.getElementById('Terminal').value;
+
+                var StatusId = document.getElementById('StatusId').value;
+
+                var SubscriptionStartDate = document.getElementById('SubscriptionStartDate').value;
+
+                var RentAmount = document.getElementById('RentAmount').value;
+
+                var PeriodTypeId = document.getElementById('PeriodTypeId').value;
+
+                var EfposServiceCharge = document.getElementById('EfposServiceCharge').value;
+
+                var ChitsCommission = document.getElementById('ChitsCommission').value;
+                var LoanDate = document.getElementById('LoanDate').value;
+                var LoanAmount = document.getElementById('LoanAmount').value;
+
+                var Notes = document.getElementById('Notes').value;
+
+
+                $.ajax({
+                    url: '@Url.Action("AddSubscriptionDetails", "Subscription")',
+                    type: "POST",
+                    //data: data,
+                    data:
+                    {
+                        ClientId: ClientId,
+                        Terminal: Terminal,
+                        StatusId: StatusId,
+                        SubscriptionStartDate: SubscriptionStartDate,
+                        RentAmount: RentAmount,
+                        PeriodTypeId: PeriodTypeId,
+                        EfposServiceCharge: EfposServiceCharge,
+                        LoanDate: LoanDate,
+                        ChitsCommission: ChitsCommission,
+                        LoanAmount: LoanAmount,
+                        Notes: Notes
+                    },
+
+
+                    success: function (data) {
+
+                        alert("Submitted");
+
+                    },
+
+                    error: function (jqXHR, status, text) {
+                        alert("Not Submitted ");
+
+
+                    }
+
+
+                });
+
+            }
+        });
+        })
+    </script>

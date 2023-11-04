@@ -1,0 +1,128 @@
+﻿@model ReliableCabs.Models.LoginModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+     <title>Reliable-Cabs</title>
+    <link rel="stylesheet" href="~/Content/css/style.css"  />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+      <link rel="icon" type="image/png" sizes="16x16" href="~/Content/plugins/images/favicon.png">
+   
+  </head>
+  <body>
+      
+      <form  class="login-form" action="../Login/Register1" method="post">
+     <h1>Register</h1>
+
+        <div class="txtb">
+          <input type="text" name="Name" id="txtUser" required="" autocomplete="off" >
+          <span data-placeholder="UserName"></span>
+         
+        </div>
+
+        <div class="txtb">
+          <input type="text" name="Password" id="txtPassword" required="" autocomplete="off">
+          <span data-placeholder="Password"></span>
+        </div>
+
+          <div class="txtb">
+          <input type="text" id="txtEmail" name="Email" required="" autocomplete="off">
+            <span data-placeholder="Email Address"></span>
+        </div>
+
+        <div class="txtb">
+          <input type="text" id="txtMobile" name="Mobile" required="" autocomplete="off">
+          <span data-placeholder="Mobile"></span>
+        </div>
+         
+           <input type="submit" class="logbtn"  value="Submit">
+
+        <div style="color:red;padding-top:10%">
+         @if (ViewBag.ErrorMsg !=null){
+          @Html.TextBox("Error", (object)ViewBag.ErrorMsg,new { @class = "redclass" })
+         }
+            <p id="statusname"></p>
+                </div>
+  
+      </form>
+
+    
+
+  </body>
+</html>
+ <script src="~/Content/js/jquery-2.2.0.min.js"></script>  
+      
+      <script type="text/javascript">
+          $(".txtb input").on("focus", function () {
+              $(this).addClass("focus");
+          });
+
+          $(".txtb input").on("blur", function () {
+              if ($(this).val() == "")
+                  $(this).removeClass("focus");
+          });
+
+          $('#txtUser').change(function () {
+              //function MobileCheck() {
+              $("#statusname").html('<font color="red"> </font>');
+              $.post("@Url.Action("NameCheckAvailability","Login")",
+            {
+                userdata: $("#txtUser").val()
+            },
+        function (data) {
+            if (data != 0) {
+                $("#statusname").html('<font color="red"> Already UserName Exists .Try Another</font>');
+                $('#txtUser').html(' ');
+            }
+            else {
+                $("#statusname").html();
+            }
+        });
+          });
+
+
+          $('#txtMobile').change(function () {
+              //function MobileCheck() {
+              $("#statusmobile").html('<font color="red"> </font>');
+              $.post("@Url.Action("MobileCheckAvailability","Driver")",
+            {
+                userdata: $("#txtMobile").val()
+            },
+        function (data) {
+            if (data != 0) {
+                $("#statusmobile").html('<font color="red"> Already Mobile existing .Try Another</font>');
+            }
+            else {
+                $("#statusmobile").html();
+            }
+        });
+           });
+
+
+          $('#txtEmail').change(function () {
+              //function MobileCheck() {
+             
+              $("#statusname").html('<font color="red"> </font>');
+              $.post("@Url.Action("EmailCheckAvailability","Login")",
+            {
+                userdata: $("#txtEmail").val()
+            },
+        function (data) {
+            alert(data)
+            if (data == 1) {
+                $("#statusname").html('<font color="red"> Already UserName Exists .Try Another</font>');
+                $('#txtEmail').html(' ');
+            }
+            else if (data == 2) {
+                $("#statusname").html('<font color="red"> Please Enter Valid Email Address</font>');
+            } else {
+                $("#statusname").html();
+            }
+        });
+           });
+      </script>

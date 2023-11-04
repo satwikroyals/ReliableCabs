@@ -1,0 +1,235 @@
+﻿@model ReliableCabs.Models.PaymentHistoryModel
+
+
+@if ((Model != null) && (Model.ListPaymentdetails.Count > 0))
+{
+
+    <div class="col-sm-12">
+        <div class="white-box">
+            <table class="tablesaw table-striped table-hover table-bordered table" data-tablesaw-mode="columntoggle">
+                <thead>
+                    <tr style="background-color:lightgray">
+                        <th style="text-align:center; font-size: 18px;" colspan="13" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist"> Payment History</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Date</th>
+
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Amount <br />(@Model.C_EftposCharge %)</th>
+
+                        @*<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Eftpos Service Charge (%)</th>*@
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">&nbsp;&nbsp; Eftpos Amount<br /> (After service charge) </th>
+
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Amount <br />(@Model.C_ChitsCharge %)</th>
+
+                        @*<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Chits Service charge %</th>*@
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">&nbsp;&nbsp;Chits Amount <br /> (After service charge)</th>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Return Trans Amount Cash/Online/Cheque/Chq No </th>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Loan To Driver</th>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Loan Amount Cash/Online/Cheque/Chq No </th>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Rent Amount</th>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Loan Repayment </th>
+                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Total Amount </th>
+                    </tr>
+                    @foreach (var i in Model.ListPaymentdetails)
+                    {
+                <tr>
+                    <td>@Convert.ToDateTime(i.Date).ToString("dd/MM/yyyy")</td>
+                    <td style="text-align:center">
+                        @*$@Convert.ToDecimal(@i.EfposAmount).ToString("#.##")*@
+                        @if (i.EfposAmount == 0 || Convert.ToString(i.EfposAmount).Trim().Length == 0 || i.EfposAmount <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>@Convert.ToDecimal(@i.EfposAmount).ToString("#.##")</p>}
+                    </td>
+                    @*<td style="text-align:center">@i.C_EftposCharge</td>*@
+                    <td style="text-align:center">
+                        @*$@Convert.ToDecimal(@i.Amount_Recieved).ToString("#.##")*@
+                        @if (i.EftposAmountRecieved == 0 || Convert.ToString(i.EftposAmountRecieved).Trim().Length == 0 || i.EftposAmountRecieved <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>@Convert.ToDecimal(@i.EftposAmountRecieved).ToString("#.##")</p>}
+                    </td>
+                    <td style="text-align:center">
+                        @if (i.ChitsAmount == 0 || Convert.ToString(i.ChitsAmount).Trim().Length == 0 || i.ChitsAmount <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>@Convert.ToDecimal(@i.ChitsAmount).ToString("#.##")</p>}
+                    </td>
+                    @*<<td style="text-align:center">@i.C_ChitsCharge</td>*@
+
+                    <td style="text-align:center">
+                        @if (i.ChitsAmountRecieved == 0 || Convert.ToString(i.ChitsAmountRecieved).Trim().Length == 0 || i.ChitsAmountRecieved <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>$@Convert.ToDecimal(@i.ChitsAmountRecieved).ToString("#.##")</p>}
+                    </td>
+
+                    <td style="text-align:center">
+                        <table>
+                            <tr>
+                                <td style="text-align:center">
+                                    @if (i.CashAmount == 0 || Convert.ToString(i.CashAmount).Trim().Length == 0 || i.CashAmount <= 0)
+                                    {<p> $ 0 /</p>}
+                                    else
+                                    {<p>$@Convert.ToDecimal(@i.CashAmount).ToString("#.##") /</p>}
+                                </td>
+
+                                <td style="text-align:center">
+                                    @if (i.OnlineAmount == 0 || Convert.ToString(i.OnlineAmount).Trim().Length == 0 || i.OnlineAmount <= 0)
+                                    {<p> $ 0 /</p>}
+                                    else
+                                    { <p>$@Convert.ToDecimal(@i.OnlineAmount).ToString("#.##") /</p>}
+                                </td>
+
+                                <td style="text-align:center">
+                                    @if (i.ChequeAmount == 0 || Convert.ToString(i.ChequeAmount).Trim().Length == 0 || i.ChequeAmount <= 0)
+                                    {<p> $ 0 /</p>}
+                                    else
+                                    { <p>$@Convert.ToDecimal(@i.ChequeAmount).ToString("#.##") /</p>}
+                                </td>
+
+                                <td style="text-align:center"><p>CHQ No: @i.ChequeNumber</p></td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="text-align:center">
+                        @if (i.LoanToDriver == 0 || Convert.ToString(i.LoanToDriver).Trim().Length == 0 || i.LoanToDriver <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>@Convert.ToDecimal(@i.LoanToDriver).ToString("#.##")</p>}
+                    </td>
+
+                    <td style="text-align:center">
+                        <table>
+                            <tr>
+                                <td style="text-align:center">
+                                    @if (i.LoanCashAmount == 0 || Convert.ToString(i.LoanCashAmount).Trim().Length == 0 || i.LoanCashAmount <= 0)
+                                    {<p> $ 0 /</p>}
+                                    else
+                                    {<p>$@Convert.ToDecimal(@i.LoanCashAmount).ToString("#.##") /</p>}
+                                </td>
+
+                                <td style="text-align:center">
+                                    @if (i.LoanOnlineAmount == 0 || Convert.ToString(i.LoanOnlineAmount).Trim().Length == 0 || i.LoanOnlineAmount <= 0)
+                                    {<p> $ 0 /</p>}
+                                    else
+                                    { <p>$@Convert.ToDecimal(@i.LoanOnlineAmount).ToString("#.##") /</p>}
+                                </td>
+
+                                <td style="text-align:center">
+                                    @if (i.LoanChequeAmount == 0 || Convert.ToString(i.LoanChequeAmount).Trim().Length == 0 || i.LoanChequeAmount <= 0)
+                                    {<p> $ 0 /</p>}
+                                    else
+                                    { <p>$@Convert.ToDecimal(@i.LoanChequeAmount).ToString("#.##") /</p>}
+                                </td>
+
+                                <td style="text-align:center"><p>CHQ No: @i.LoanChequeNumber</p></td>
+
+                            </tr>
+                        </table>
+                    </td>
+
+                    <td style="text-align:center">
+                        @if (i.RentAmount == 0 || Convert.ToString(i.RentAmount).Trim().Length == 0 || i.RentAmount <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>@Convert.ToDecimal(@i.RentAmount).ToString("#.##")</p>}
+                    </td>
+                    <td style="text-align:center">
+                        @if (i.LoanRepayment == 0 || Convert.ToString(i.LoanRepayment).Trim().Length == 0 || i.LoanRepayment <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>@Convert.ToDecimal(@i.LoanRepayment).ToString("#.##")</p>}
+                    </td>
+
+                    <td>
+                        @if (i.TotalAmount == 0 || Convert.ToString(i.TotalAmount).Trim().Length == 0 || i.TotalAmount <= 0)
+                        {<p> $ 0</p>}
+                        else
+                        { <p>@Convert.ToDecimal(@i.TotalAmount).ToString("#.##")</p>}
+                    </td>
+
+                    @*<td style="text-align:center">
+                        <button class="btn_delete1" type="button" onclick="getsampledata(@i.SubTransId)">Edit</button>
+                      
+                        <button class="btn_delete" type="button" onclick="deletedata(@i.SubTransId)">Delete</button>
+
+                    </td>*@
+                </tr>
+
+
+
+                        
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+}
+@*@section scripts
+{
+    <script src="/Content/js/jquery-2.2.0.min.js"></script>*@
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        function getsampledata(SubTranId) {
+            var SubTransId = SubTransId;
+            $.ajax({
+                type: "POST",
+                url: "/SubscriptionTrans/GetSubTransPaymentDetails",
+                data: {
+                    SubTransId: SubTransId
+
+                },
+                success: function (data) {
+
+                    window.location.href = "../SubscriptionTrans/SubscriptionTrans"
+                },
+
+                error: function (jqXHR, status, text) {
+                    //alert("Not Submitted ");
+                }
+
+            });
+        }
+        
+
+    
+
+    function deletedata(SubTransId) {
+        var SubTransId = SubTransId;
+        //alert('Are you sure to delete row');-->
+        $.ajax({
+            type: "POST",
+            url: "/SubscriptionTrans/DeleteTransDetails",
+            data: {
+                SubTransId: SubTransId
+
+            },
+            success: function (data) {
+            alert("Deleted Successfully");
+                window.location.href = "../SubscriptionTrans/SubscriptionTrans"
+            },
+
+            error: function (jqXHR, status, text) {
+            alert("Not Submitted ");
+            }
+
+            });
+
+    }
+
+        
+    });
+
+    </script>
+@*}*@

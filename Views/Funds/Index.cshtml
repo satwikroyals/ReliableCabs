@@ -1,0 +1,323 @@
+﻿@model ReliableCabs.Models.CashCollectedModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+}
+
+<div class="container">
+    <div class ="container .box .box-cell.box2" style="padding-left:20%">
+        <table style="width:100%;border-color:none">
+             <thead>
+                 <tr>     
+            <th style="color:Red;align-content:flex-end">Credit Amount</th>
+            <th style="color:Red">Debit Amount</th>
+            <th style="color:Red">Net Amount</th>        
+        </tr>
+    
+    </thead>
+    <tbody>
+          @if (Model.ListFundsDetails.Count > 0)
+             {
+        <tr>
+      
+            <td>@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().CreditAmount).ToString("0.00")</td>
+            <td>@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().DebitAmount).ToString("0.00")</td>
+             <td id="NetAmount">@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().NetAmount).ToString("0.00")</td>
+           
+      </tr>
+             }  
+        else
+        {
+               <tr>
+      
+            <td>0.00</td>
+            <td>0.00</td>
+             <td id="NetAmount">0.00</td>
+           
+      </tr>
+          }
+       
+      
+        </tbody>
+        </table>
+ </div>
+   </div>
+
+<div class="container" style="padding-top:3%" >
+    <div class ="container .box .box-cell.box1" style="padding-left:20%">
+        <table>
+            <tr>
+            <td style="width:100%">
+                <h3 style="color:darkblue"><b>CREDIT TRANSACTION DETIALS</b></h3>
+            </td>
+                 <td style="padding-right:3%">
+                 <input type="text" id="txtcash" class="form-control" placeholder="Enter Amount" style="width:180px"/> </td>
+                <td> 
+            <td style="padding-right:3%;width:60%">
+               
+                 <input type="text" id="txtRefNo" class="form-control" placeholder="Enter Ref" style="width:180px"/> </td>
+                
+                <td>
+
+    <button type="button" id="btnadd" class="btn btn-block btn-danger" onclick="addcash()" >ADD CASH</button> 
+                
+
+            </td>
+             </tr>
+        </table>
+       @*  <table>
+            <tr>
+            <td style="width:100%">
+                <h3 style="color:darkblue"><b>CREDIT TRANSACTION DETIALS</b></h3>
+            </td>
+                </tr>
+             <tr>
+                 <td style="padding-left:22%">
+                 <input type="text" id="txtcash" class="form-control" placeholder="Enter Amount" style="width:180px"/> </td>
+                <td> 
+                 <td style="padding-right:3%;width:60%">
+                 <input type="text" id="txtRefNo" class="form-control" placeholder="Enter RefNo" style="width:180px"/> </td>
+                <td> 
+            <td style="padding-right:3%;width:60%">
+                @Html.TextBoxFor(x => x.SubscriptionStartDate, new { @class = "form-control mydatepicker" }) <span class="input-group-addon"><i class="icon-calender"></i></span> 
+                 <input type="text" id="txtdate" class="form-control mydatepicker" name="myDate" style="width:180px"/> </td>
+                
+                <td>
+
+    <button type="button" id="btnadd" class="btn btn-block btn-danger" onclick="addcash()" >ADD CASH</button> 
+                
+
+            </td>
+             </tr>
+        </table>*@
+ </div>
+   </div>
+
+
+ <div class="col-sm-12" style=" padding-left:1%">
+ <div class="white-box1" >
+  <table id="table_id" class="tablesaw table-striped table-hover table-bordered table">
+    <thead>
+        <tr style="background-color:#87CEEB">
+            <th>CashAmountId</th>
+            <th>CASH AMOUNT</th>
+            <th>REF No.</th>
+            <th>TRANSACTION DATE</th>
+            <th></th>
+         
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model.ListCashcollected)
+            {
+   
+        <tr>
+            <td>@item.CashAmountId</td>
+            <td>@item.CashAmount</td>
+            <td>@item.RefNo</td>
+            <td>@Convert.ToDateTime(item.CreatedDate).ToString("dd/MM/yyyy")</td>
+            <td><button class="btn_delete1" onclick="btndelete(@item.CashAmountId)" title="Delete"><i class="fa fa-trash"></i></button></td>
+          @* <button class="btn_delete1" title="Edit"><i class="fa fa-edit" style="font-size:12px"></i></button></td>*@
+        </tr>
+            }
+        }
+      
+      
+                 
+        </tbody>
+</table>
+    
+          </div>           
+
+</div>
+
+<div class="container">
+    <div class ="container .box .box-cell.box2" style="padding-left:20%">
+        <table>
+            <tr>
+            <td>
+                <h3 style="color:darkblue"><b>DEBIT TRANSACTION DETIALS</b></h3>
+            </td>
+            </tr>
+        </table>
+ </div>
+   </div>
+
+ <div class="col-sm-12" style=" padding-left:1%">
+ <div class="white-box1" >
+     <div>
+  <table id="table_id1" class="tablesaw table-striped table-hover table-bordered table">
+    <thead>
+          
+
+        <tr style="background-color:#87CEEB">
+            <th>SubTransId</th>
+            <th>Name</th>
+             @if (Model.ListCashReturnDetails != null && Model.ListCashReturnDetails.Count > 0)
+             {
+            <th>Cash Amount <br />Total : @Model.ListCashReturnDetails.FirstOrDefault().TotalCashAmount</th>
+             }
+             else
+             {
+                  <th>Cash Amount </th>
+             }
+            <th>TRANSACTION DATE</th>        
+        </tr>
+           
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+
+            foreach (var item in Model.ListCashReturnDetails)
+            {
+   
+        <tr>
+            <td>@item.subtransid</td>
+             <td>@item.Name</td>
+            <td>@item.CashAmount</td>
+            <td>@Convert.ToDateTime(item.CreatedDate).ToString("dd/MM/yyyy")</td>
+        </tr>
+            }
+
+        }   
+          @* <tr>
+               
+               <td colspan="2">Total Cash</td>
+               <td colspan="2" >@Model.ListCashReturnDetails.FirstOrDefault().TotalCashAmount</td>
+               
+           </tr>*@
+                   
+        </tbody>
+</table>
+    </div>
+          </div>           
+
+</div>
+
+
+
+
+@section scripts
+{
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+   <script src=" https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></script>
+    <script src="~/Content/plugins/components/datatables/jquery.dataTables.min.js"></script>
+
+   
+
+    <script>
+        $(document).ready(function () {
+            document.getElementById('Pendingamtnew').value = $("#NetAmount").text();
+
+            //var date_input = $('input[name="myDate"]'); //our date input has the name "date"
+            //var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            //date_input.datepicker({
+            //    format: 'dd/mm/yyyy',
+            //    container: container,
+            //    todayHighlight: true,
+            //    autoclose: true,
+            //});
+
+         
+
+            $('#table_id').DataTable({
+                responsive: true,
+                "order": [[0, "desc"]],
+
+                columnDefs: [{
+                    targets: [1],
+                    render: $.fn.dataTable.render.number(',', '.', 2)
+                }]
+            });
+
+            //$("#txtdummy").on("click", function () {
+
+                $('#table_id1').DataTable({
+                    responsive: true,
+                    async: false,
+                    "order": [[0, "desc"]],
+
+
+                    columnDefs: [{
+                        targets: [2],
+                        render: $.fn.dataTable.render.number(',', '.', 2)
+                    }]
+                });
+
+            });
+          
+
+          
+        //});
+        $("#txtcash").on("keyup", function () {
+
+            var valid = /^\d{0,4}(\.\d{0,3})?$/.test(this.value),
+                val = this.value;
+
+            if (!valid) {
+                alert("Please enter valid amount, eg xx.xx!");
+                this.value = val.substring(0, val.length - 3);
+            }
+        });
+
+
+        function addcash() {
+
+            var CashAmount = document.getElementById('txtcash').value;
+            var RefNo = document.getElementById('txtRefNo').value;
+
+            if (CashAmount == '') {
+                alert("Please enter amount");
+            }
+            if (RefNo == '') {
+                alert("Please enter RefNo");
+            }
+            else {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("InsertCash", "Funds")',
+                    data:
+               {
+                   CashAmount: CashAmount,
+                   RefNo : RefNo
+
+               },
+                    success: function (r) {
+                        alert("Successfully submitted");
+                        window.location.href = "../Funds/Index"
+                     
+                    }
+                });
+            }
+        }
+
+        function btndelete(CashAmountid) {
+        
+            var r = confirm("Are you sure to delete this row.");
+            if (r == true) {
+                var cashAmountid = CashAmountid;
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteCash", "Funds")',
+                    data:
+               {
+                   cashAmountid: CashAmountid,
+
+               },
+                    success: function (r) {
+                        alert("Successfully Deleted");
+                        window.location.href = "../Funds/Index"
+                        
+                    }
+                 });
+            } 
+        }
+
+</script>
+    }

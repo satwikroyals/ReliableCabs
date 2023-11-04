@@ -1,0 +1,69 @@
+﻿@model ReliableCabs.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+     <title>Reliable-Cabs</title>
+    <link rel="stylesheet" href="~/Content/css/style.css"  />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+      <link rel="icon" type="image/png" sizes="16x16" href="~/Content/plugins/images/favicon.png">
+   
+  </head>
+  <body>
+      
+      <form  class="login-form" action="../login/Autorize" method="post">
+        <h1>Login</h1>
+
+        <div class="txtb">
+          <input type="text" name="Name" id="txtUser" required="" autocomplete="off">
+          <span data-placeholder="UserName"></span>
+        </div>
+
+        <div class="txtb">
+          <input type="password" name="Password" id="txtPassword" required="" autocomplete="off">
+           <span data-placeholder="Password"></span>
+        </div>
+
+        <input type="submit" class="logbtn"  value="Submit">
+@*            <button type="button" id="btnSubmit"  class="logbtn" onclick="btnSubmit()">Login</button>*@
+
+          <div style="color:red;padding-top:8%">
+         @*@if (ViewBag.ErrorMsg !=null){
+          @Html.TextBox("Error", (object)ViewBag.ErrorMsg,new { @class = "redclass" })
+         }*@
+               
+                </div>
+
+        <div class="bottom-text">
+           <a href="../Login/ForgotPassword"><span style="color:blue">Forgot Password ?</span></a><br /><br />
+          Don't have account? <a href="../Login/Register">Sign up</a>
+        </div>
+  
+      </form>
+
+    
+
+  </body>
+</html>
+ <script src="~/Content/js/jquery-2.2.0.min.js"></script>  
+      
+      <script type="text/javascript">
+        
+
+              $(".txtb input").on("focus", function () {
+                  $(this).addClass("focus");
+              });
+
+              $(".txtb input").on("blur", function () {
+                  if ($(this).val() == "")
+                      $(this).removeClass("focus");
+              });
+
+
+         
+
+      </script>

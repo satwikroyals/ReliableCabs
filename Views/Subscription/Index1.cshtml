@@ -1,0 +1,104 @@
+﻿@model ReliableCabs.Models.SubscriptionModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+    
+}
+
+
+                <!-- /row -->
+                <div class="row">
+				
+				 <div class="col-sm-2">
+				
+                <div class="btn-group m-r-10">
+				<h4 class="box-title m-b-0 please-wrapper">Please Select Driver </h4>
+                                 @*   <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle waves-effect waves-light cvb2" type="button">Thomas <span class="caret"></span></button>
+                                    <ul role="menu" class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>*@
+                      @Html.DropDownListFor(x => x.ClientId, ViewBag.ClientList as SelectList, "---Select Client--", new { @class = "form-control" })
+                       
+                                </div>
+							
+                    </div>
+				
+				 <div class="col-sm-10" >
+                   
+				 </div>
+                   
+                   
+                </div>
+                <!-- /.row -->
+                  @* <div class="row">
+				   <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="panel panel-info welcome-panel">
+                           
+                            <div class="panel-wrapper collapse in" aria-expanded="true">*@
+
+                                  <div id="body">
+
+                                  <div id="ProdPartials">
+
+                                   @Html.Partial("PartialSubscription", Model)
+      
+                                    </div>
+                                    </div>
+
+                           @*    
+                            </div>
+                        </div>
+                    </div>
+					 <div class="col-md-2"></div>
+                </div>   *@
+                <!-- .row -->
+
+                <!-- /.row -->
+                <!-- .row -->
+               
+                <!-- /.row -->
+                <!-- .row -->
+               
+                <!-- /.row -->
+                <!-- ===== Right-Sidebar ===== -->
+              
+            <!-- /.container-fluid -->
+            <footer class="footer t-a-c">
+                © 2020 Reliable-Cabs
+            </footer>
+
+
+ <script src="~/Content/js/jquery-2.2.0.min.js"></script>      
+<script>
+    $(document).ready(function () {
+        document.getElementById('Pendingamtnew').value = @ViewBag.NetAmount
+        document.getElementById('body').style.display = 'none';
+
+        $("#ClientId").on("change", function () {
+            document.getElementById('body').style.display = 'block';
+
+            var id = $("#ClientId option:selected").val();
+
+            $("#ProdPartials").load('@(Url.Action("GetSubscriptionDetails","Subscription",null, Request.Url.Scheme))?id=' + id)
+
+
+        })
+
+		//var date_input=$('input[name="date"]'); //our date input has the name "date"
+		//var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		//date_input.datepicker({
+		//	format: 'mm/dd/yyyy',
+		//	container: container,
+		//	todayHighlight: true,
+		//	autoclose: true,
+		//})
+
+        
+      
+    });
+</script>

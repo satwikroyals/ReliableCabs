@@ -1,0 +1,256 @@
+﻿@model ReliableCabs.Models.ReportModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutHeader.cshtml";
+  
+}
+ <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+         
+  
+  <div class="row">
+				   <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="panel panel-info welcome-panel">
+                           
+                            <div class="panel-wrapper collapse in" aria-expanded="true">
+      
+                                    <form action="#" class="form-horizontal">
+                                        <div class="form-body">
+										
+										   <div class="subscription-part" style="text-align:center;background-color:#81e7f7">
+                                            <h3 class="panel-header" >EDIT SUBSCRIPTION TRANSACTION DETAILS</h3>
+                                            
+											</div>
+											
+                                            <hr class="m-t-0 m-b-40">
+                                                <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Efpos Amount</label>
+                                                        <div class="col-md-7">
+                                                          @*  <input  type="text" class="form-control" placeholder="Terminal"> *@
+                                                            @Html.TextBoxFor(x => x.EfposAmount, new { @class = "form-control" })
+                                                        </div>
+                                                           
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Chits Amount</label>
+                                                        <div class="col-md-7">
+                                                              @Html.TextBoxFor(x => x.ChitsAmount, new { @class = "form-control" })
+                    								</div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Cash Amount</label>
+                                                        <div class="col-md-7">
+														    @Html.TextBoxFor(x => x.CashAmount, new { @class = "form-control" })  
+                                        				    
+															</div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Rent Amount</label>
+                                                        <div class="col-md-7">
+                                                              @Html.TextBoxFor(x => x.RentAmount, new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                                </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Cheque Amount </label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.ChequeAmount, new { @class = "form-control" })
+                      
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Cheque Number</label>
+                                                        <div class="col-md-7">
+                                                              @Html.TextBoxFor(x => x.ChequeNumber, new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>  
+                                                </div>                                          
+                                            <!--/row-->
+                                           <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Online Amount</label>
+                                                        <div class="col-md-7">
+                                                            
+                                                              @Html.TextBoxFor(x => x.OnlineAmount, new { @class = "form-control " })  
+														 
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5"> Advance Adjustment </label>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(x => x.AdvanceAdjustment, new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            </div>
+                                            <!--/row-->
+                                           <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">LoanToDriver</label>
+                                                        <div class="col-md-7">
+                                                           @Html.TextBoxFor(x => x.LoanToDriver, new { @class = "form-control" })  </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                               @* <div class="row">*@
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Comments</label>
+                                                        <div class="col-md-7">														
+                                                             @Html.TextBoxFor(x => x.Comments, new { @class = "form-control" })  
+                                                            @Html.TextBoxFor(m => m.SubTransId, new { style = "display: none;" })
+												
+                                                           	</div>
+															</div>
+                                                    </div>
+                                                @*</div>*@
+                                                <!--/span-->
+                                            </div>
+                                           <!--/row-->
+    @if (Model != null)
+     {
+                                         
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <button type="button" id="btnSubmit"  class="btn btn-success" >Submit</button>
+                          @* <button type="button" onclick="btnClick()" class="btn btn-success"> Submit</button>*@
+                                                                              
+                                                             <input type="hidden"  id="txtclientid"/>
+                                                             </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6"> </div>
+                                            </div>
+                                        </div>
+}
+                                            
+</div>
+                                           
+                                    </form>
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+					 <div class="col-md-2"></div>
+                </div>   
+ 
+  
+
+                           @*    
+                            </div>
+                        </div>
+                    </div>
+					 <div class="col-md-2"></div>
+                </div>   *@
+                <!-- .row -->
+
+                <!-- /.row -->
+                <!-- .row -->
+            <footer class="footer t-a-c">
+                © 2020 Reliable-Cabs
+            </footer>
+
+
+ <script src="~/Content/js/jquery-2.2.0.min.js"></script>     
+ 
+@section scripts
+{
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+            var SubTransId = document.getElementById('SubTransId').value;
+            var EfposAmount = document.getElementById('EfposAmount').value;
+            var ChitsAmount = document.getElementById('ChitsAmount').value;
+            var CashAmount = document.getElementById('CashAmount').value;
+            var RentAmount = document.getElementById('RentAmount').value;
+            var ChequeAmount = document.getElementById('ChequeAmount').value;
+            var ChequeNumber = document.getElementById('ChequeNumber').value;
+            var OnlineAmount = document.getElementById('OnlineAmount').value;
+            var AdvanceAdjustment = document.getElementById('AdvanceAdjustment').value;
+            var LoanToDriver = document.getElementById('LoanToDriver').value;
+            var Comments = document.getElementById('Comments').value;
+
+
+            $.ajax({
+                url: '@Url.Action("EditSubTransDetails", "Reports")',
+                type: "POST",
+                //data: data,
+                data:
+                {
+                    SubTransId: SubTransId,
+                    EfposAmount: EfposAmount,
+                    ChitsAmount: ChitsAmount,
+                    CashAmount: CashAmount,
+                    ChequeAmount: ChequeAmount,
+                    ChequeNumber: ChequeNumber,
+                    RentAmount: RentAmount,
+                    OnlineAmount: OnlineAmount,
+                    AdvanceAdjustment: AdvanceAdjustment,
+                    LoanToDriver: LoanToDriver,
+                    Comments: Comments
+                },
+                success: function (data) {
+
+                    alert("Submitted");
+
+                    window.location.href = "@Url.Action("Index", "Reports")";
+
+                },
+
+                error: function (jqXHR, status, text) {
+                    alert("Not Submitted ");
+
+
+                }
+
+
+            });
+
+
+        });
+
+    });
+</script>
+     }

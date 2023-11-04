@@ -1,0 +1,162 @@
+﻿@model ReliableCabs.Models.ViewModel
+@{
+    ViewBag.Title = "GetDriverDetails";
+    Layout = "~/Views/Shared/Rpt/RptLayoutHeader.cshtml";
+}
+
+<div style="padding-left:40%;color:darkblue"><h2><strong><bold>GET DRIVER DETAILS</bold></strong></h2></div>
+<div style="width:90%; margin:0 auto">
+     <div >
+        <input type="button"  style="padding-left:4px 0px 0px 0px; color:white;background-color:blue;width:150px;border:none" value="Export To Excel" id="btnExport" />
+    </div>
+    <div style="padding:5px 0px 3px 0px">
+        <table>
+            <tbody>
+                <tr>
+                   
+                    <td style="font-size:medium">Status </td>
+                    <td>
+                        <select id="ddlStatus" style="width:100px" >
+                             <option value="0">--Select-- </option>
+                            <option value="1">Active </option>
+                              <option value="2">InActive </option>
+                              <option value="3">OnHold </option>
+                           
+                        </select>
+                      
+               
+                   </td>
+                    <td> &nbsp</td>
+                    <td style="padding:0px 100px 3px 0px">
+                        <div >
+        @*<input type="button"  style="padding-left:2px 0px 0px 0px; color:white;background-color:blue;width:100px;border:none" value="Search" id="btnSearch" />*@
+                             <button class="btn_delete1" onclick="getdata()" title="Edit"><i class="fa fa-edit"></i></button>
+    </div>
+                    </td>
+                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table id="myTable" class="table table-responsive table-striped">
+            <thead>
+                <tr style="background-color:#5691f0">
+                <th>First Name</th>
+                 <th>Last Name</th>
+                 <th>Email</th>
+                 <th>Mobile</th>
+                 <th>License No.</th>
+                 <th>Name Plate No.</th>
+                <th>Terminal</th>
+                 <th>Sim Number</th>
+                 <th>Status</th>
+                  <th hidden></th>
+                  </tr>
+
+            </thead>
+              <tbody>
+       @if (Model != null)
+    {
+              foreach (var item in Model.ListDriverbystatus)
+                {
+   
+             <tr>
+                  
+                  <td >@item.firstname</td>
+                  <td >@item.LastName</td>
+                  <td >@item.Email</td>
+                 <td style="background-color:#FCF2E1">@item.Mobile</td>
+                  <td >@item.DriverLicenceNo</td>
+                   <td >@item.NamePlateNumber</td>
+                   <td style="background-color: #E1FCE8">@item.Terminal</td>
+                  <td >@item.SimNumber</td>
+                 <td style="background-color:#FFF7CC">@item.Status</td>
+               
+                    <td id="NetAmount" hidden>@ViewBag.NetAmount.ToString("0.00")</td>
+                 </tr>
+       }
+              }
+          </tbody>
+        </table>
+    </div>
+</div>
+@section scripts
+{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   @* <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>*@
+    <script src=" https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></script>
+    <script src="~/Content/plugins/components/datatables/jquery.dataTables.min.js"></script>
+  
+    <script>
+        $(document).ready(function () {
+            document.getElementById('Pendingamtnew').value = $("#NetAmount").text();
+           
+
+            datatabltInitialize();
+        });
+
+ 
+
+        function datatabltInitialize() {
+            $('#myTable').DataTable({
+                responsive: true,
+                "oLanguage": {
+                    "sSearch": "<b>Search :</b> "
+                },
+           
+
+                columnDefs: [{
+                    "width": "20px", "targets": [2],
+                    "width": "80px", "targets": [4],
+                    "width": "100px", "targets": [5],
+                      "width": "100px", "targets": [6] 
+                 
+                }]
+            });
+            $('.dataTables_filter input[type="search"]').
+
+            css({
+                'width': '250px', 'height': '40px', 'background-color': '#e5ebec',
+                'align': 'right', 'display': 'inline-block', "position": "right", "left": "-100px"
+            });
+
+        }
+
+    
+     
+   @*     function getdata(ClientId) {
+            var ClientId = ClientId;
+            window.location.href = "@Url.Action("GetDriverDetails", "Driver")?ClientId=" + ClientId;
+
+        }*@
+
+        function getdata() {
+            var statusId = $("#ddlStatus option:selected").val();
+            alert(statusId);
+            $.ajax({
+            
+                url: '@Url.Action("GetclientStatusDetails", "Reports")',
+                type: "POST",
+                data:
+                {
+                    statusId: statusId
+                },
+                success: function (data) {
+                    $('#myTable').DataTable({
+                        destroy: true,
+                        searching: false
+                    });
+                    datatabltInitialize();
+                },
+
+                error: function (jqXHR, status, text) {
+                    alert("Not Submitted ");
+                }
+
+            });
+
+        }
+
+</script>
+    }

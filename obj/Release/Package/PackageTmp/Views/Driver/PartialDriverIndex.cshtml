@@ -1,0 +1,63 @@
+﻿@model ReliableCabs.Models.ClientModel
+
+  <div class="row" style="padding-top:1%">
+ <div class="col-sm-12" style=" padding-left:2%">
+ <div class="white-box" >
+  <table id="table_id" class="tablesaw table-striped table-hover table-bordered table">
+    <thead>
+        <tr style="background-color:#87CEEB">
+            <th>Client Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Mobile</th>
+             <th>Email</th>
+             <th>Driver Licence No</th>
+             <th>Bank Details </th>
+             <th>Sim Number</th>
+             <th>Name PlateNumber</th>
+            
+            <th ></th>
+             <th  hidden></th>
+
+   
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+    {
+        foreach (var item in Model.ListClients)
+            {
+   
+        <tr>
+            <td>@item.ClientId</td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Mobile</td>
+            <td >@item.Email</td>
+            <td>@item.DriverLicenceNo</td>
+            <td>@item.BankDetails</td>
+            <td>@item.SimNumber</td>
+            <td>@item.NamePlateNumber</td>
+          
+            <td style="width:100px">@*<button type="button" id="btnEdit" class="btnTrans" onclick="getdata(@item.ClientId)" >Edit</button>*@
+              @*  <button type="button" id="btnDelete" class="btnTrans" onclick="deletedata(@item.ClientId)" >Delete</button>*@
+                 <button class="btn_delete1" onclick="getdata(@item.ClientId)" title="Edit"><i class="fa fa-edit"></i></button>
+                 <button class="btn_delete1" onclick="deletedata(@item.ClientId)" title="Delete"><i class="fa fa-trash"></i></button>
+            </td>
+             <td id="NetAmount" hidden>@Convert.ToDecimal(Model.ListFundsDetails.FirstOrDefault().NetAmount).ToString("0.00")</td>
+          
+             
+             
+        </tr>
+        }   
+        }
+      
+      
+                 
+        </tbody>
+</table>
+    
+          </div>           
+
+</div>
+      </div>
